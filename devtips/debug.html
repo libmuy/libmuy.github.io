@@ -6,42 +6,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wpa Supplicant - LIBMUY</title>
+    <title>Debug - LIBMUY</title>
 
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
 
     <link rel="stylesheet" href="/assets/css/wordpress.css">
     <link rel="stylesheet" href="/assets/css/menubar_test.css">
-    <link rel="canonical" href="/linux/wpa-supplicant.html">
+    <link rel="canonical" href="/devtips/debug.html">
 
     <link rel="stylesheet" href="/assets/prism/prism.css">
     <script src="/assets/prism/prism.js"></script>
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
-    <meta name="keywords" content="Wpa Supplicant, LIBMUY, ">
+    <meta name="keywords" content="Debug, LIBMUY, ">
     <meta name="description" content="">
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Wpa Supplicant | Libmuy’s Blog</title>
+<title>Debug | Libmuy’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="Wpa Supplicant">
+<meta property="og:title" content="Debug">
 <meta name="author" content="Libmuy">
 <meta property="og:locale" content="ja_JP">
-<meta name="description" content="wpa_supplicantの設定ファイル書き方例">
-<meta property="og:description" content="wpa_supplicantの設定ファイル書き方例">
-<link rel="canonical" href="http://libmuy.github.io/linux/wpa-supplicant.html">
-<meta property="og:url" content="http://libmuy.github.io/linux/wpa-supplicant.html">
+<meta name="description" content="Linuxのデバッグ関連メモ">
+<meta property="og:description" content="Linuxのデバッグ関連メモ">
+<link rel="canonical" href="http://0.0.0.0:4000/devtips/debug.html">
+<meta property="og:url" content="http://0.0.0.0:4000/devtips/debug.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2018-03-30T00:00:00+09:00">
+<meta property="article:published_time" content="2018-07-26T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Wpa Supplicant">
+<meta property="twitter:title" content="Debug">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"description":"wpa_supplicantの設定ファイル書き方例","url":"http://libmuy.github.io/linux/wpa-supplicant.html","@type":"BlogPosting","headline":"Wpa Supplicant","dateModified":"2018-03-30T00:00:00+09:00","datePublished":"2018-03-30T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/linux/wpa-supplicant.html"},"author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"headline":"Debug","dateModified":"2018-07-26T00:00:00+09:00","datePublished":"2018-07-26T00:00:00+09:00","description":"Linuxのデバッグ関連メモ","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"url":"http://0.0.0.0:4000/devtips/debug.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/devtips/debug.html"},"@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -160,17 +160,14 @@
     <div id="side-fixed">
         <div class="toc_title">目次</div>
         <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#reference">Reference</a></li>
 <li class=" toc-h1">
-<a href="#examples-%E8%AA%8D%E8%A8%BC%E6%96%B9%E5%BC%8F--%E6%9A%97%E5%8F%B7%E6%96%B9%E5%BC%8F">Examples （認証方式 + 暗号方式）</a>
+<a href="#libsegfaultso">libSegFault.so</a>
 <ul>
-<li class=" toc-h2"><a href="#wpa-psk--tkip">WPA-PSK  ＋　TKIP</a></li>
-<li class=" toc-h2"><a href="#wpa-psk--aes">WPA-PSK  ＋　AES</a></li>
-<li class=" toc-h2"><a href="#wpa2-psk--tkip">WPA2-PSK  ＋　TKIP</a></li>
-<li class=" toc-h2"><a href="#wpa2-psk--aes">WPA2-PSK  ＋　AES</a></li>
-<li class=" toc-h2"><a href="#wep128">WEP128</a></li>
+<li class=" toc-h2"><a href="#source-code">Source code</a></li>
+<li class=" toc-h2"><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C">実行結果</a></li>
 </ul>
 </li>
+<li class=" toc-h1"><a href="#coredump%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">COREDUMPを有効にする方法</a></li>
 </ul>
     </div>
 </div>
@@ -180,104 +177,146 @@
             <div id="core" class="grid">
                 <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
                     <header id="article-header">
-                        <h1 class="entry-title" itemprop="headline name">Wpa Supplicant</h1>
+                        <h1 class="entry-title" itemprop="headline name">Debug</h1>
                     </header>
                     <div class="clearfix">
                         <p class="meta">
                             <i class="far fa-clock"></i>
                             <span class="date published">
-                                <time class="entry-date updated" datetime="2018-03-30T00:00:00+09:00" itemprop="datePublished">
-                                    30 Mar 2018
+                                <time class="entry-date updated" datetime="2018-07-26T00:00:00+09:00" itemprop="datePublished">
+                                    26 Jul 2018
                                 </time>
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-09-20T22:23:40+09:00">
-                                20 Sep 2021
+                                <meta itemprop="dateModified" content="">
+                                
                             </span>
                         </p>
 
                         <div id="toc_container">
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
                             <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#reference">Reference</a></li>
 <li class=" toc-h1">
-<a href="#examples-%E8%AA%8D%E8%A8%BC%E6%96%B9%E5%BC%8F--%E6%9A%97%E5%8F%B7%E6%96%B9%E5%BC%8F">Examples （認証方式 + 暗号方式）</a>
+<a href="#libsegfaultso">libSegFault.so</a>
 <ul>
-<li class=" toc-h2"><a href="#wpa-psk--tkip">WPA-PSK  ＋　TKIP</a></li>
-<li class=" toc-h2"><a href="#wpa-psk--aes">WPA-PSK  ＋　AES</a></li>
-<li class=" toc-h2"><a href="#wpa2-psk--tkip">WPA2-PSK  ＋　TKIP</a></li>
-<li class=" toc-h2"><a href="#wpa2-psk--aes">WPA2-PSK  ＋　AES</a></li>
-<li class=" toc-h2"><a href="#wep128">WEP128</a></li>
+<li class=" toc-h2"><a href="#source-code">Source code</a></li>
+<li class=" toc-h2"><a href="#%E5%AE%9F%E8%A1%8C%E7%B5%90%E6%9E%9C">実行結果</a></li>
 </ul>
 </li>
+<li class=" toc-h1"><a href="#coredump%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">COREDUMPを有効にする方法</a></li>
 </ul>
                         </div>
 
-                        <p>wpa_supplicantの設定ファイル書き方例</p>
+                        <p>Linuxのデバッグ関連メモ</p>
 
-<h1 id="reference">Reference</h1>
-<p>http://www.youchikurin.com/blog/2007/06/linuxlan_1.html</p>
+<h1 id="libsegfaultso">libSegFault.so</h1>
 
-<h1 id="examples-認証方式--暗号方式">Examples （認証方式 + 暗号方式）</h1>
+<p>プリロードすると、プログラムが異常発生した時、の各種dumpしてくれる。</p>
 
-<h2 id="wpa-psk--tkip">WPA-PSK  ＋　TKIP</h2>
+<h2 id="source-code">Source code</h2>
+<pre><code class="line-numbers">int main(void)
+{
+        char *ptr = (char*)0x10000000;
 
-<pre><code class="line-numbers">network={
-ssid="myid"
-proto=WPA
-key_mgmt=WPA-PSK
-pairwise=TKIP
-group=TKIP
-psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        memset(ptr, 0, 128);
+        return 0;
 }
 </code></pre>
 
-<h2 id="wpa-psk--aes">WPA-PSK  ＋　AES</h2>
+<h2 id="実行結果">実行結果</h2>
 
-<pre><code class="line-numbers">network={
-ssid="myid"
-proto=WPA
-key_mgmt=WPA-PSK
-pairwise=CCMP
-group=CCMP
-psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-}
+<p><code>export LD_PRELOAD=//lib/x86_64-linux-gnu/libSegFault.so</code></p>
+
+<pre><code class="line-numbers">./memerr
+*** Segmentation fault
+Register dump:
+
+ RAX: 0000000010000000   RBX: 0000000000000000   RCX: 0000000010000040
+ RDX: 0000000000000080   RSI: 0000000000000000   RDI: 0000000010000000
+ RBP: 00007fffb70800a0   R8 : 00000000004005d0   R9 : 00007f4f5de97ab0
+ R10: 000000000000034e   R11: 00007f4f5d947240   R12: 0000000000400430
+ R13: 00007fffb7080180   R14: 0000000000000000   R15: 0000000000000000
+ RSP: 00007fffb7080088
+
+ RIP: 00007f4f5d947294   EFLAGS: 00010202
+
+ CS: 0033   FS: 0000   GS: 0000
+
+ Trap: 0000000e   Error: 00000006   OldMask: 00000000   CR2: 10000000
+
+ FPUCW: 0000037f   FPUSW: 00000000   TAG: 00000000
+ RIP: 00000000   RDP: 00000000
+
+ ST(0) 0000 0000000000000000   ST(1) 0000 0000000000000000
+ ST(2) 0000 0000000000000000   ST(3) 0000 0000000000000000
+ ST(4) 0000 0000000000000000   ST(5) 0000 0000000000000000
+ ST(6) 0000 0000000000000000   ST(7) 0000 0000000000000000
+ mxcsr: 1f80
+ XMM0:  00000000000000000000000000000000 XMM1:  00000000000000000000000000000000
+ XMM2:  00000000000000000000000000000000 XMM3:  00000000000000000000000000000000
+ XMM4:  00000000000000000000000000000000 XMM5:  00000000000000000000000000000000
+ XMM6:  00000000000000000000000000000000 XMM7:  00000000000000000000000000000000
+ XMM8:  00000000000000000000000000000000 XMM9:  00000000000000000000000000000000
+ XMM10: 00000000000000000000000000000000 XMM11: 00000000000000000000000000000000
+ XMM12: 00000000000000000000000000000000 XMM13: 00000000000000000000000000000000
+ XMM14: 00000000000000000000000000000000 XMM15: 00000000000000000000000000000000
+
+Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(+0x8f294)[0x7f4f5d947294]
+./memerr[0x40054c]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf0)[0x7f4f5d8d8830]
+./memerr[0x400459]
+
+Memory map:
+
+00400000-00401000 r-xp 00000000 00:31 20437058                           /misc/home/bjn/wk/test_code/memerr
+00600000-00601000 r--p 00000000 00:31 20437058                           /misc/home/bjn/wk/test_code/memerr
+00601000-00602000 rw-p 00001000 00:31 20437058                           /misc/home/bjn/wk/test_code/memerr
+017d9000-017fa000 rw-p 00000000 00:00 0                                  [heap]
+7f4f5d6a2000-7f4f5d6b8000 r-xp 00000000 fd:00 75497993                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f4f5d6b8000-7f4f5d8b7000 ---p 00016000 fd:00 75497993                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f4f5d8b7000-7f4f5d8b8000 rw-p 00015000 fd:00 75497993                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f4f5d8b8000-7f4f5da78000 r-xp 00000000 fd:00 75497608                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f4f5da78000-7f4f5dc78000 ---p 001c0000 fd:00 75497608                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f4f5dc78000-7f4f5dc7c000 r--p 001c0000 fd:00 75497608                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f4f5dc7c000-7f4f5dc7e000 rw-p 001c4000 fd:00 75497608                   /lib/x86_64-linux-gnu/libc-2.23.so
+7f4f5dc7e000-7f4f5dc82000 rw-p 00000000 00:00 0
+7f4f5dc82000-7f4f5dc86000 r-xp 00000000 fd:00 75497676                   /lib/x86_64-linux-gnu/libSegFault.so
+7f4f5dc86000-7f4f5de85000 ---p 00004000 fd:00 75497676                   /lib/x86_64-linux-gnu/libSegFault.so
+7f4f5de85000-7f4f5de86000 r--p 00003000 fd:00 75497676                   /lib/x86_64-linux-gnu/libSegFault.so
+7f4f5de86000-7f4f5de87000 rw-p 00004000 fd:00 75497676                   /lib/x86_64-linux-gnu/libSegFault.so
+7f4f5de87000-7f4f5dead000 r-xp 00000000 fd:00 75497570                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f4f5e095000-7f4f5e098000 rw-p 00000000 00:00 0
+7f4f5e0ab000-7f4f5e0ac000 rw-p 00000000 00:00 0
+7f4f5e0ac000-7f4f5e0ad000 r--p 00025000 fd:00 75497570                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f4f5e0ad000-7f4f5e0ae000 rw-p 00026000 fd:00 75497570                   /lib/x86_64-linux-gnu/ld-2.23.so
+7f4f5e0ae000-7f4f5e0af000 rw-p 00000000 00:00 0
+7fffb7061000-7fffb7082000 rw-p 00000000 00:00 0                          [stack]
+7fffb71ac000-7fffb71af000 r--p 00000000 00:00 0                          [vvar]
+7fffb71af000-7fffb71b1000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+Segmentation fault (core dumped)
+
 </code></pre>
 
-<h2 id="wpa2-psk--tkip">WPA2-PSK  ＋　TKIP</h2>
+<h1 id="coredumpを有効にする方法">COREDUMPを有効にする方法</h1>
 
-<pre><code class="line-numbers">network={
-ssid="myid"
-proto=RSN
-key_mgmt=WPA-PSK
-pairwise=TKIP
-group=TKIP
-psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-}
+<ol>
+  <li>Kernel
+    <pre><code class="line-numbers">CONFIG_ELF_CORE=y
 </code></pre>
-
-<h2 id="wpa2-psk--aes">WPA2-PSK  ＋　AES</h2>
-
-<pre><code class="line-numbers">network={
-ssid="myid"
-proto=RSN
-key_mgmt=WPA-PSK
-pairwise=CCMP
-group=CCMP
-psk=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-}
+  </li>
+  <li>Userland
+    <pre><code class="line-numbers">ulimit -c unlimited
+echo 1 &gt; /proc/sys/kernel/core_uses_pid
+echo "/tmp/core-%e-%s-%u-%g-%p-%t" &gt; /proc/sys/kernel/core_pattern
 </code></pre>
+  </li>
+</ol>
 
-<h2 id="wep128">WEP128</h2>
-
-<pre><code class="line-numbers">network={
-ssid="myid"
-key_mgmt=NONE
-wep_key0="1234567890123"
-wep_tx_keyidx=0
-}
-</code></pre>
+<p>参考：
+https://developer.toradex.com/knowledge-base/enable-and-analyze-coredumps-in-linux</p>
 
 
                     </div>
@@ -296,29 +335,12 @@ wep_tx_keyidx=0
     
     
     <i class="fas fa-folder-open"></i>
-    <a href="/category/linux/">Linux</a>
+    <a href="/category/devtips/">開発Tips</a>
     
     
 </span>
                             <span class="tags items" itemprop="keywords">
 
-    
-    
-    <span class="first-item">
-        <i class="fas fa-tags"></i>
-        <a href="/tag/Linux/">Linux</a>
-    </span>
-    
-    
-    
-    <span class="break">,</span>
-    <a href="/tag/WLAN/">WLAN</a>
-    
-    
-    
-    <span class="break">,</span>
-    <a href="/tag/wpa_supplicant/">wpa_supplicant</a>
-    
     
 </span>
                         </p>
@@ -341,8 +363,8 @@ wep_tx_keyidx=0
             
 
 
-            <div class="category-lv1 current">
-                <a href="/category/linux">Linux(13)</a>
+            <div class="category-lv1 ">
+                <a href="/category/linux">Linux(4)</a>
             </div>
             
             
@@ -351,7 +373,7 @@ wep_tx_keyidx=0
 
 
             <div class="category-lv1 ">
-                <a href="/category/shell">シェル(1)</a>
+                <a href="/category/kernel">カーネル(4)</a>
             </div>
             
             
@@ -360,7 +382,7 @@ wep_tx_keyidx=0
 
 
             <div class="category-lv1 ">
-                <a href="/category/network">ネットワーク(1)</a>
+                <a href="/category/network">ネットワーク(2)</a>
             </div>
             
             
@@ -370,6 +392,33 @@ wep_tx_keyidx=0
 
             <div class="category-lv1 ">
                 <a href="/category/web">Web関連(3)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 ">
+                <a href="/category/tools">ツール(2)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 current">
+                <a href="/category/devtips">開発Tips(2)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 ">
+                <a href="/category/shell">シェル(1)</a>
             </div>
             
             
@@ -394,7 +443,7 @@ wep_tx_keyidx=0
                     <div>site.data.b(level):</div>
                     <div>site.data.c(level):</div>
                     <div>site.data.d(level):</div>
-                    <div>page.data[category]:linux</div>
+                    <div>page.data[category]:devtips</div>
                     <div>page.data[newdata]:</div>
 
                 </div> -->

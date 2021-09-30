@@ -6,42 +6,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git - LIBMUY</title>
+    <title>General Programming Knowledge - LIBMUY</title>
 
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
 
     <link rel="stylesheet" href="/assets/css/wordpress.css">
     <link rel="stylesheet" href="/assets/css/menubar_test.css">
-    <link rel="canonical" href="/linux/git.html">
+    <link rel="canonical" href="/devtips/general-programming-knowledge.html">
 
     <link rel="stylesheet" href="/assets/prism/prism.css">
     <script src="/assets/prism/prism.js"></script>
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
-    <meta name="keywords" content="Git, LIBMUY, ">
+    <meta name="keywords" content="General Programming Knowledge, LIBMUY, ">
     <meta name="description" content="">
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Git | Libmuy’s Blog</title>
+<title>General Programming Knowledge | Libmuy’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="Git">
+<meta property="og:title" content="General Programming Knowledge">
 <meta name="author" content="Libmuy">
 <meta property="og:locale" content="ja_JP">
-<meta name="description" content="gitの使い方メモ">
-<meta property="og:description" content="gitの使い方メモ">
-<link rel="canonical" href="http://libmuy.github.io/linux/git.html">
-<meta property="og:url" content="http://libmuy.github.io/linux/git.html">
+<meta name="description" content="Linux環境でプログラミングの常識知識">
+<meta property="og:description" content="Linux環境でプログラミングの常識知識">
+<link rel="canonical" href="http://0.0.0.0:4000/devtips/general-programming-knowledge.html">
+<meta property="og:url" content="http://0.0.0.0:4000/devtips/general-programming-knowledge.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2018-04-04T00:00:00+09:00">
+<meta property="article:published_time" content="2018-02-16T10:33:04+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Git">
+<meta property="twitter:title" content="General Programming Knowledge">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"description":"gitの使い方メモ","url":"http://libmuy.github.io/linux/git.html","@type":"BlogPosting","headline":"Git","dateModified":"2018-04-04T00:00:00+09:00","datePublished":"2018-04-04T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/linux/git.html"},"author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"headline":"General Programming Knowledge","dateModified":"2018-02-16T10:33:04+09:00","datePublished":"2018-02-16T10:33:04+09:00","description":"Linux環境でプログラミングの常識知識","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"url":"http://0.0.0.0:4000/devtips/general-programming-knowledge.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/devtips/general-programming-knowledge.html"},"@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -160,31 +160,15 @@
     <div id="side-fixed">
         <div class="toc_title">目次</div>
         <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#reset">reset</a></li>
 <li class=" toc-h1">
-<a href="#checkout">checkout</a>
+<a href="#autotools">Autotools</a>
 <ul>
-<li class=" toc-h2"><a href="#checkout-a-specific-file-to-a-specific-revision">checkout a specific file to a specific revision</a></li>
-</ul>
-</li>
-<li class=" toc-h1">
-<a href="#log">log</a>
-<ul>
-<li class=" toc-h2"><a href="#find-a-deleted-file-in-the-project-commit-history">find a deleted file in the project commit history?</a></li>
-</ul>
-</li>
-<li class=" toc-h1">
-<a href="#clean">clean</a>
-<ul>
-<li class=" toc-h2"><a href="#options">options</a></li>
-<li class=" toc-h2">
-<a href="#examples">examples</a>
-<ul>
-<li class=" toc-h3"><a href="#git-clean--fdx">git clean -fdx</a></li>
-<li class=" toc-h3"><a href="#git-clean--xf">git clean -xf</a></li>
-<li class=" toc-h3"><a href="#git-clean--df">git clean -df</a></li>
-</ul>
-</li>
+<li class=" toc-h2"><a href="#references">References</a></li>
+<li class=" toc-h2"><a href="#overall-description">Overall description</a></li>
+<li class=" toc-h2"><a href="#regenerating-autotools-files-autoreconf">Regenerating autotools files: autoreconf</a></li>
+<li class=" toc-h2"><a href="#configureac-language">configure.ac language</a></li>
+<li class=" toc-h2"><a href="#some-macros">Some Macros</a></li>
+<li class=" toc-h2"><a href="#output-variables">Output variables</a></li>
 </ul>
 </li>
 </ul>
@@ -196,110 +180,166 @@
             <div id="core" class="grid">
                 <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
                     <header id="article-header">
-                        <h1 class="entry-title" itemprop="headline name">Git</h1>
+                        <h1 class="entry-title" itemprop="headline name">General Programming Knowledge</h1>
                     </header>
                     <div class="clearfix">
                         <p class="meta">
                             <i class="far fa-clock"></i>
                             <span class="date published">
-                                <time class="entry-date updated" datetime="2018-04-04T00:00:00+09:00" itemprop="datePublished">
-                                    04 Apr 2018
+                                <time class="entry-date updated" datetime="2018-02-16T10:33:04+09:00" itemprop="datePublished">
+                                    16 Feb 2018
                                 </time>
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-09-20T22:23:40+09:00">
-                                20 Sep 2021
+                                <meta itemprop="dateModified" content="">
+                                
                             </span>
                         </p>
 
                         <div id="toc_container">
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
                             <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#reset">reset</a></li>
 <li class=" toc-h1">
-<a href="#checkout">checkout</a>
+<a href="#autotools">Autotools</a>
 <ul>
-<li class=" toc-h2"><a href="#checkout-a-specific-file-to-a-specific-revision">checkout a specific file to a specific revision</a></li>
-</ul>
-</li>
-<li class=" toc-h1">
-<a href="#log">log</a>
-<ul>
-<li class=" toc-h2"><a href="#find-a-deleted-file-in-the-project-commit-history">find a deleted file in the project commit history?</a></li>
-</ul>
-</li>
-<li class=" toc-h1">
-<a href="#clean">clean</a>
-<ul>
-<li class=" toc-h2"><a href="#options">options</a></li>
-<li class=" toc-h2">
-<a href="#examples">examples</a>
-<ul>
-<li class=" toc-h3"><a href="#git-clean--fdx">git clean -fdx</a></li>
-<li class=" toc-h3"><a href="#git-clean--xf">git clean -xf</a></li>
-<li class=" toc-h3"><a href="#git-clean--df">git clean -df</a></li>
-</ul>
-</li>
+<li class=" toc-h2"><a href="#references">References</a></li>
+<li class=" toc-h2"><a href="#overall-description">Overall description</a></li>
+<li class=" toc-h2"><a href="#regenerating-autotools-files-autoreconf">Regenerating autotools files: autoreconf</a></li>
+<li class=" toc-h2"><a href="#configureac-language">configure.ac language</a></li>
+<li class=" toc-h2"><a href="#some-macros">Some Macros</a></li>
+<li class=" toc-h2"><a href="#output-variables">Output variables</a></li>
 </ul>
 </li>
 </ul>
                         </div>
 
-                        <p>gitの使い方メモ</p>
+                        <p>Linux環境でプログラミングの常識知識</p>
 
-<h1 id="reset">reset</h1>
+<h1 id="autotools">Autotools</h1>
+
+<p>Also known as <code>GNU Build System</code>.
+Well descripted at <a href="https://en.wikipedia.org/wiki/GNU_Build_System">Wiki</a></p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.gnu.org/software/autoconf/manual/html_node/index.html">Autoconf Manual</a></li>
+  <li><a href="https://www.gnu.org/software/automake/manual/automake.html">Automake Manual</a></li>
+  <li><a href="https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-autotools-tutorial.pdf">petazzoni-autotools-tutorial.pdf</a></li>
+</ul>
+
+<h2 id="overall-description">Overall description</h2>
 
 <ul>
   <li>
-<code>--hard</code>：「HEADの位置・インデックス・ワーキングツリー」全て</li>
+    <p>Flow diagram of autoconf and automake: original image is <a href="https://upload.wikimedia.org/wikipedia/commons/8/84/Autoconf-automake-process.svg">here</a> <br>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Autoconf-automake-process.svg/400px-Autoconf-automake-process.svg.png" alt="Flow diagram of autoconf and automake"></p>
+  </li>
   <li>
-<code>--mixed（or オプション無し）</code>：「HEADの位置・インデックス」</li>
-  <li>
-<code>--soft</code>：「HEADの位置」のみ</li>
+    <p>Overall organization from <a href="https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-autotools-tutorial.pdf">petazzoni-autotools-tutorial.pdf</a> 
+original image is <a href="images/autotools_overall.png">here</a>  <br>
+  <img src="/assets/images/2018-02-16-general-programming-knowledge_autotools_overall.png" style="width:100%"></p>
+  </li>
 </ul>
 
-<h1 id="checkout">checkout</h1>
+<h2 id="regenerating-autotools-files-autoreconf">Regenerating autotools files: autoreconf</h2>
 
-<h2 id="checkout-a-specific-file-to-a-specific-revision">checkout a specific file to a specific revision</h2>
-<p><a href="https://stackoverflow.com/questions/215718/reset-or-revert-a-specific-file-to-a-specific-revision-using-git">ref</a></p>
+<ul>
+  <li>To generate all the files used by autotools, you could call automake, autoconf, aclocal, autoheader, etc. manually.
+    <ul>
+      <li>But it is not very easy and efficient.</li>
+    </ul>
+  </li>
+  <li>A tool called autoreconf automates this process
+    <ul>
+      <li>Useful option: -i or –install, to ask autoreconf to copy missing auxiliary files</li>
+    </ul>
+  </li>
+  <li>Always use autoreconf!</li>
+</ul>
 
-<pre><code class="line-numbers">git checkout c5f567 -- file1/to/restore file2/to/restore
-</code></pre>
+<h2 id="configureac-language">configure.ac language</h2>
 
-<h1 id="log">log</h1>
+<ul>
+  <li>configure.ac is a shell script.</li>
+  <li>it used to be named configure.in but this name is now deprecated</li>
+  <li>Processed through the m4 preprocessor</li>
+  <li>Shell script augmented with special constructs for portability:
+    <ul>
+      <li>
+<code>AS_IF</code> instead of shell <code>if ... then .. fi</code>
+</li>
+      <li>
+<code>AS_CASE</code> instead of shell <code>case ... esac</code>
+</li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="find-a-deleted-file-in-the-project-commit-history">find a deleted file in the project commit history?</h2>
-<p><a href="https://stackoverflow.com/questions/7203515/git-how-to-find-a-deleted-file-in-the-project-commit-history">ref</a></p>
+<h2 id="some-macros">Some Macros</h2>
 
-<pre><code class="line-numbers">git log --all --full-history -- **/thefile.*
-</code></pre>
-
-<h1 id="clean">clean</h1>
-
-<h2 id="options">options</h2>
 <ul>
   <li>
-<code>-f, --force</code>: If the Git configuration variable clean.requireForce is not set to false, git clean will refuse to delete files or directories unless given -f.</li>
+<code>AC_INIT(package, version, [bug-report], [tarname], [url])</code>
+    <ul>
+      <li>Every conﬁgure script must call AC_INIT before doing anything else that produces output.</li>
+    </ul>
+  </li>
   <li>
-<code>-x</code>:  Git では通常無視されるファイルを削除します</li>
+<code>AC_OUTPUT</code>
+    <ul>
+      <li>Every configure.ac, should ﬁnish by calling AC_OUTPUT.</li>
+      <li>Generates and runs config.status, which in turn creates the makeﬁles and any
+other ﬁles resulting from conﬁguration.</li>
+    </ul>
+  </li>
   <li>
-<code>-d</code>:  カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリを削除します。</li>
+<code>AC_PREREQ</code>
+    <ul>
+      <li>Veriﬁes that a recent enough version of autoconf is used</li>
+    </ul>
+  </li>
   <li>
-<code>-n, --dry-run</code>: Don’t actually remove anything, just show what would be done.</li>
+<code>AC_PROG_CC, AC_PROG_CXX, AC_PROG_AWK, AC_PROG_GREP, AC_PROG_LEX, AC_PROG_YACC</code>
+    <ul>
+      <li>makes sure a compiler, awk, grep, etc. is available</li>
+    </ul>
+  </li>
+  <li>
+<code>AC_CONFIG_FILES (file..., [cmds], [init-cmds])</code>
+    <ul>
+      <li>Make AC_OUTPUT create each file by copying an input <code>file</code> (by default <code>file.in</code>),
+substituting the output variable values.</li>
+      <li>Example: <code>AC_CONFIG_FILES([Makefile src/Makefile])</code>
+</li>
+    </ul>
+  </li>
+  <li>Many other macros in <a href="https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Existing-Tests.html#Existing-Tests">Manual</a>
+</li>
 </ul>
 
-<h2 id="examples">examples</h2>
+<h2 id="output-variables">Output variables</h2>
 
-<h3 id="git-clean--fdx">git clean -fdx</h3>
-<p>カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリ、および Git では通常無視されるファイルを削除します。<br>
-<code>-n</code>オプションをつける事で、削除されるファイル一覧を見る事もできます。</p>
-
-<h3 id="git-clean--xf">git clean -xf</h3>
-<p>カレントディレクトリ内の追跡対象外ファイルおよび Git では通常無視されるファイルを削除します。</p>
-
-<h3 id="git-clean--df">git clean -df</h3>
-<p>カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリを削除します。</p>
+<ul>
+  <li>autoconf will replace <code>@variable@</code> constructs by the appropriate values in files listed in <code>AC_CONFIG_FILES</code>
+</li>
+  <li>Long list of standard variables replaced by autoconf</li>
+  <li>Additional shell variables declared in configure.ac can be replaced using <code>AC_SUBST</code>
+    <ul>
+      <li>The following three examples are equivalent:
+        <pre><code class="line-numbers">AC_SUBST([FOO], [42])
+</code></pre>
+        <pre><code class="line-numbers">FOO=42
+AC_SUBST([FOO])
+</code></pre>
+        <pre><code class="line-numbers">AC_SUBST([FOO])
+FOO=42
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 
                     </div>
@@ -318,19 +358,12 @@
     
     
     <i class="fas fa-folder-open"></i>
-    <a href="/category/linux/">Linux</a>
+    <a href="/category/devtips/">開発Tips</a>
     
     
 </span>
                             <span class="tags items" itemprop="keywords">
 
-    
-    
-    <span class="first-item">
-        <i class="fas fa-tags"></i>
-        <a href="/tag/git/">git</a>
-    </span>
-    
     
 </span>
                         </p>
@@ -353,8 +386,8 @@
             
 
 
-            <div class="category-lv1 current">
-                <a href="/category/linux">Linux(13)</a>
+            <div class="category-lv1 ">
+                <a href="/category/linux">Linux(4)</a>
             </div>
             
             
@@ -363,7 +396,7 @@
 
 
             <div class="category-lv1 ">
-                <a href="/category/shell">シェル(1)</a>
+                <a href="/category/kernel">カーネル(4)</a>
             </div>
             
             
@@ -372,7 +405,7 @@
 
 
             <div class="category-lv1 ">
-                <a href="/category/network">ネットワーク(1)</a>
+                <a href="/category/network">ネットワーク(2)</a>
             </div>
             
             
@@ -382,6 +415,33 @@
 
             <div class="category-lv1 ">
                 <a href="/category/web">Web関連(3)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 ">
+                <a href="/category/tools">ツール(2)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 current">
+                <a href="/category/devtips">開発Tips(2)</a>
+            </div>
+            
+            
+            
+            
+
+
+            <div class="category-lv1 ">
+                <a href="/category/shell">シェル(1)</a>
             </div>
             
             
@@ -406,7 +466,7 @@
                     <div>site.data.b(level):</div>
                     <div>site.data.c(level):</div>
                     <div>site.data.d(level):</div>
-                    <div>page.data[category]:linux</div>
+                    <div>page.data[category]:devtips</div>
                     <div>page.data[newdata]:</div>
 
                 </div> -->

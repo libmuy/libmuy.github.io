@@ -277,7 +277,8 @@ div[class*=category-lv]:not(.current)>a {
     .grid {
         padding: 5px 5px;
     }
-    #sitename {
+    #sitename > a{
+        -webkit-text-stroke-width: .5px;
         font-size: 3.5rem;
     }
     #sitename img {

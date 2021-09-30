@@ -13,7 +13,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
 }
 
 a {
@@ -158,7 +160,8 @@ label {
 .container {
     width: 100%;
     margin-right: auto;
-    margin-left: auto
+    margin-left: auto;
+    flex:1;
 }
 
 
@@ -1305,12 +1308,6 @@ div[id*=side-],
     background: #fff9f9
 }
 
-#footer {
-    clear: both;
-    background: #fff;
-    border-top: 1px solid #ddd;
-    z-index: 10
-}
 
 .row {
     margin: 0
