@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shell - LIBMUY</title>
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <script src="/assets/prism/prism.js"></script>
 
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
 
-    <link rel="stylesheet" href="/assets/css/wordpress.css">
-    <link rel="stylesheet" href="/assets/css/menubar_test.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="canonical" href="/category/shell/">
 
-    <link rel="stylesheet" href="/assets/prism/prism.css">
-    <script src="/assets/prism/prism.js"></script>
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
     <meta name="keywords" content="shell, LIBMUY, ">
@@ -28,8 +27,8 @@
 <meta property="og:locale" content="ja_JP" />
 <meta name="description" content="Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。" />
 <meta property="og:description" content="Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。" />
-<link rel="canonical" href="http://0.0.0.0:4000/category/shell/" />
-<meta property="og:url" content="http://0.0.0.0:4000/category/shell/" />
+<link rel="canonical" href="http://libmuy.github.io/category/shell/" />
+<meta property="og:url" content="http://libmuy.github.io/category/shell/" />
 <meta property="og:site_name" content="Libmuy’s Blog" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="shell" />
@@ -38,7 +37,7 @@
 <meta property="fb:admins" content="libmuy" />
 <meta property="article:publisher" content="libmuy" />
 <script type="application/ld+json">
-{"headline":"shell","description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"url":"http://0.0.0.0:4000/category/shell/","@type":"WebPage","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"http://libmuy.github.io/category/shell/","@type":"WebPage","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"shell","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -99,8 +98,8 @@
                     </span>
                     <i class="fas fa-redo-alt"></i>
                     <span class="date">
-                        <meta itemprop="dateModified" content="2021-09-20T22:23:40+09:00">
-                        20 Sep 2021
+                        <meta itemprop="dateModified" content="2021-10-06T23:28:47+09:00">
+                        06 Oct 2021
                     </span>
                     
                     
@@ -162,156 +161,84 @@
 </div>
     </main>
     
-    <div id="side">
-    <aside>
-        <div id="side-fixed">
-            <div class="home ">
-                <a href="/">HOME</a>
-            </div>
-            
-
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/linux">Linux(4)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/kernel">カーネル(4)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/network">ネットワーク(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/web">Web関連(3)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/tools">ツール(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/devtips">開発Tips(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 current">
-                <a href="/category/shell">シェル(1)</a>
-            </div>
-            
-            
+    <div id="right-side">
+    <div id="side-fixed">
+        <div class="title ">
+            <a href="/">HOME</a>
         </div>
-        <!-- <div id="search-4" class="widget widget_search">
-                    <h3 class="side-title">検索</h3>
-                    <div id="search" itemscope="" itemtype="https://schema.org/WebSite">
-                        <meta itemprop="url" content="https://linuxref.net/">
-                        <form itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction"
-                            method="get" class="search-form" action="https://linuxref.net/">
-                            <meta itemprop="target" content="https://linuxref.net/?s={s}"><label><input
-                                    itemprop="query-input" type="search" class="search-field" placeholder="  サイト内検索"
-                                    value="" name="s" title="サイト内検索" required=""></label><input type="submit"
-                                class="search-submit" value="検索">
-                        </form>
-                    </div>
-                </div>
-                <div id="search-4" class="widget widget_search">
-                    <h3 class="side-title">Debug</h3>
+        
 
-                    <div>site.data.a(level):</div>
-                    <div>site.data.b(level):</div>
-                    <div>site.data.c(level):</div>
-                    <div>site.data.d(level):</div>
-                    <div>page.data[category]:</div>
-                    <div>page.data[newdata]:</div>
+        
+        
+        
 
-                </div> -->
-    </aside>
+
+        <div class="category-lv1 ">
+            <a href="/category/linux">Linux(4)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/kernel">カーネル(5)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/network">ネットワーク(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/web">Web関連(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/tools">ツール(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/devtips">開発Tips(3)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 current">
+            <a href="/category/shell">シェル(1)</a>
+        </div>
+        
+        
+    </div>
 </div>
-<!--/#side-->
-
+<!--/#right-side-->
 </div>
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
-    <script>
-        const menu = document.querySelector('.menu');
-        const side = document.querySelector('#side');
-        //Get the button:
-        goToTopBtn = document.getElementById("goToTopBtn");
-
-
-        // When the user clicks on the button, scroll to the top of the document
-        function goToTopFunction() {
-            window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-            // document.body.scrollTop = 0; // For Safari
-            // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        menu.addEventListener('click', function () {
-            this.classList.toggle('toggle');
-            side.classList.toggle('toggle');
-        });
-
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function () {
-            var currentScrollPos = window.pageYOffset;
-            var nav = document.getElementsByTagName("nav")[0];
-
-            if (prevScrollpos > currentScrollPos) {
-                nav.style.top = "0";
-            } else {
-                nav.style.top = "-51px";
-            }
-            prevScrollpos = currentScrollPos;
-            console.log("currentScrollPos:" + currentScrollPos);
-            if (currentScrollPos > 300) {
-                goToTopBtn.style.visibility = "visible";
-                goToTopBtn.style.opacity = "0.5";
-            } else {
-                goToTopBtn.style.visibility = "hidden";
-                goToTopBtn.style.opacity = "0";
-            }
-        }
-
-
-    </script>
-    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <script type="text/javascript" src="/assets/main.js"></script>    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
             <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span>&nbsp;<span

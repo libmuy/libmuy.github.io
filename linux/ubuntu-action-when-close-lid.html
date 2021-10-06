@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git - LIBMUY</title>
+    <title>Ubuntuディスプレイを閉じたときの挙動を設定 - LIBMUY</title>
     <link rel="stylesheet" href="/assets/prism/prism.css">
     <script src="/assets/prism/prism.js"></script>
 
@@ -14,33 +14,35 @@
     <link rel="icon" href="/assets/images/logo_black_small.png">
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="canonical" href="/tools/git.html">
+    <link rel="canonical" href="/linux/ubuntu-action-when-close-lid.html">
 
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
-    <meta name="keywords" content="Git, LIBMUY, ">
+    <meta name="keywords" content="Ubuntuディスプレイを閉じたときの挙動を設定, LIBMUY, ">
     <meta name="description" content="">
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Git | Libmuy’s Blog</title>
+<title>Ubuntuディスプレイを閉じたときの挙動を設定 | Libmuy’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="Git">
+<meta property="og:title" content="Ubuntuディスプレイを閉じたときの挙動を設定">
 <meta name="author" content="Libmuy">
 <meta property="og:locale" content="ja_JP">
-<meta name="description" content="gitの使い方メモ">
-<meta property="og:description" content="gitの使い方メモ">
-<link rel="canonical" href="http://libmuy.github.io/tools/git.html">
-<meta property="og:url" content="http://libmuy.github.io/tools/git.html">
+<meta name="description" content="Ubuntuディスプレイを閉じたときの挙動の設定方法">
+<meta property="og:description" content="Ubuntuディスプレイを閉じたときの挙動の設定方法">
+<link rel="canonical" href="http://libmuy.github.io/linux/ubuntu-action-when-close-lid.html">
+<meta property="og:url" content="http://libmuy.github.io/linux/ubuntu-action-when-close-lid.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
+<meta property="og:image" content="http://libmuy.github.io/assets/images/2020-06-25-ubuntu-settings_Ubuntu_linux.jpg">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2018-04-04T00:00:00+09:00">
+<meta property="article:published_time" content="2020-06-25T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Git">
+<meta property="twitter:image" content="http://libmuy.github.io/assets/images/2020-06-25-ubuntu-settings_Ubuntu_linux.jpg">
+<meta property="twitter:title" content="Ubuntuディスプレイを閉じたときの挙動を設定">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"datePublished":"2018-04-04T00:00:00+09:00","description":"gitの使い方メモ","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/tools/git.html"},"url":"http://libmuy.github.io/tools/git.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Git","dateModified":"2018-04-04T00:00:00+09:00","@context":"https://schema.org"}</script>
+{"datePublished":"2020-06-25T00:00:00+09:00","description":"Ubuntuディスプレイを閉じたときの挙動の設定方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/linux/ubuntu-action-when-close-lid.html"},"url":"http://libmuy.github.io/linux/ubuntu-action-when-close-lid.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"http://libmuy.github.io/assets/images/2020-06-25-ubuntu-settings_Ubuntu_linux.jpg","headline":"Ubuntuディスプレイを閉じたときの挙動を設定","dateModified":"2020-06-25T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -84,16 +86,7 @@
     <div id="side-fixed">
         <div class="title">目次</div>
         <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#%E7%8F%BE%E5%9C%A8%E7%8A%B6%E6%85%8Bhead%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%AE%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AB%E7%A7%BB%E5%8B%95">現在状態（HEADの位置）を特定のコミットに移動</a></li>
-<li class=" toc-h1"><a href="#%E7%89%B9%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E7%89%B9%E5%AE%9A%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AB%E6%88%BB%E3%81%99">特定ファイルを特定コミットに戻す</a></li>
-<li class=" toc-h1"><a href="#%E5%89%8A%E9%99%A4%E3%81%97%E3%81%9F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E8%A6%8B%E3%82%8B">削除したファイルのログを見る</a></li>
-<li class=" toc-h1">
-<a href="#clean%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">cleanコマンド</a>
-<ul>
-<li class=" toc-h2"><a href="#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">オプション</a></li>
-<li class=" toc-h2"><a href="#%E4%BE%8B">例）</a></li>
-</ul>
-</li>
+<li class=" toc-h1"><a href="#ubuntu%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E3%82%92%E9%96%89%E3%81%98%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E6%8C%99%E5%8B%95%E3%82%92%E8%A8%AD%E5%AE%9A">Ubuntuディスプレイを閉じたときの挙動を設定</a></li>
 </ul>
     </div>
 </div>
@@ -103,14 +96,14 @@
             <div id="core" class="grid">
                 <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
                     <header id="article-header">
-                        <h1 class="entry-title" itemprop="headline name">Git</h1>
+                        <h1 class="entry-title" itemprop="headline name">Ubuntuディスプレイを閉じたときの挙動を設定</h1>
                     </header>
                     <div class="clearfix">
                         <p class="meta">
                             <i class="far fa-clock"></i>
                             <span class="date published">
-                                <time class="entry-date updated" datetime="2018-04-04T00:00:00+09:00" itemprop="datePublished">
-                                    04 Apr 2018
+                                <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00" itemprop="datePublished">
+                                    25 Jun 2020
                                 </time>
                             </span>
                             <i class="fas fa-redo-alt"></i>
@@ -123,71 +116,36 @@
                         <div id="toc_container">
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
                             <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#%E7%8F%BE%E5%9C%A8%E7%8A%B6%E6%85%8Bhead%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E7%89%B9%E5%AE%9A%E3%81%AE%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AB%E7%A7%BB%E5%8B%95">現在状態（HEADの位置）を特定のコミットに移動</a></li>
-<li class=" toc-h1"><a href="#%E7%89%B9%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E7%89%B9%E5%AE%9A%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%AB%E6%88%BB%E3%81%99">特定ファイルを特定コミットに戻す</a></li>
-<li class=" toc-h1"><a href="#%E5%89%8A%E9%99%A4%E3%81%97%E3%81%9F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%92%E8%A6%8B%E3%82%8B">削除したファイルのログを見る</a></li>
-<li class=" toc-h1">
-<a href="#clean%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">cleanコマンド</a>
-<ul>
-<li class=" toc-h2"><a href="#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">オプション</a></li>
-<li class=" toc-h2"><a href="#%E4%BE%8B">例）</a></li>
-</ul>
-</li>
+<li class=" toc-h1"><a href="#ubuntu%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4%E3%82%92%E9%96%89%E3%81%98%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E6%8C%99%E5%8B%95%E3%82%92%E8%A8%AD%E5%AE%9A">Ubuntuディスプレイを閉じたときの挙動を設定</a></li>
 </ul>
                         </div>
 
-                        <p>gitの使い方メモ</p>
+                        <p>Ubuntuディスプレイを閉じたときの挙動の設定方法</p>
 
-<h1 id="現在状態headの位置を特定のコミットに移動">現在状態（HEADの位置）を特定のコミットに移動</h1>
+<h1 id="ubuntuディスプレイを閉じたときの挙動を設定">Ubuntuディスプレイを閉じたときの挙動を設定</h1>
 
-<ul>
+<ol>
   <li>
-<code>--hard</code>：「HEADの位置・インデックス・ワーキングツリー」全て</li>
-  <li>
-<code>--mixed（or オプション無し）</code>：「HEADの位置・インデックス」</li>
-  <li>
-<code>--soft</code>：「HEADの位置」のみ</li>
-</ul>
-
-<h1 id="特定ファイルを特定コミットに戻す">特定ファイルを特定コミットに戻す</h1>
-
-<pre><code class="language-bash line-numbers">git checkout c5f567 -- file1/to/restore file2/to/restore
+<code>/etc/systemd/logind.conf</code>にある<code>HandleLidSwitch</code>を修正
+    <pre><code class="language-bash line-numbers"> sudo vi sudo gedit /etc/systemd/logind.conf
 </code></pre>
-
-<h1 id="削除したファイルのログを見る">削除したファイルのログを見る</h1>
-
-<pre><code class="language-bash line-numbers">git log --all --full-history -- **/thefile.*
+    <ul>
+      <li>
+<code>HandleLidSwitch=lock</code> – lock when lid closed.</li>
+      <li>
+<code>HandleLidSwitch=ignore</code> – do nothing.</li>
+      <li>
+<code>HandleLidSwitch=poweroff</code> – shutdown.</li>
+      <li>
+<code>HandleLidSwitch=hibernate</code> – hibernate Ubuntu.</li>
+    </ul>
+  </li>
+  <li>
+<code>logind</code>を再起動
+    <pre><code class="language-bash line-numbers">sudo systemctl restart systemd-logind
 </code></pre>
-
-<h1 id="cleanコマンド">
-<code>clean</code>コマンド</h1>
-
-<h2 id="オプション">オプション</h2>
-<ul>
-  <li>
-<code>-f, --force</code>: If the Git configuration variable clean.requireForce is not set to false, git clean will refuse to delete files or directories unless given -f.</li>
-  <li>
-<code>-x</code>:  Git では通常無視されるファイルを削除します</li>
-  <li>
-<code>-d</code>:  カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリを削除します。</li>
-  <li>
-<code>-n, --dry-run</code>: Don’t actually remove anything, just show what would be done.</li>
-</ul>
-
-<h2 id="例">例）</h2>
-
-<ul>
-  <li>
-<code>git clean -fdx</code><br>
-カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリ、および Git では通常無視されるファイルを削除します。<br>
-<code>-n</code>オプションをつける事で、削除されるファイル一覧を見る事もできます。</li>
-  <li>
-<code>git clean -xf</code><br>
-カレントディレクトリ内の追跡対象外ファイルおよび Git では通常無視されるファイルを削除します。</li>
-  <li>
-<code>git clean -df</code><br>
-カレントディレクトリ内の追跡対象外ファイルおよび追跡対象外ディレクトリを削除します。</li>
-</ul>
+  </li>
+</ol>
 
 
                     </div>
@@ -206,19 +164,12 @@
     
     
     <i class="fas fa-folder-open"></i>
-    <a href="/category/tools/">ツール</a>
+    <a href="/category/linux/">Linux</a>
     
     
 </span>
                             <span class="tags items" itemprop="keywords">
 
-    
-    
-    <span class="first-item">
-        <i class="fas fa-tags"></i>
-        <a href="/tag/git/">git</a>
-    </span>
-    
     
 </span>
                         </p>
@@ -240,7 +191,7 @@
         
 
 
-        <div class="category-lv1 ">
+        <div class="category-lv1 current">
             <a href="/category/linux">Linux(4)</a>
         </div>
         
@@ -276,7 +227,7 @@
         
 
 
-        <div class="category-lv1 current">
+        <div class="category-lv1 ">
             <a href="/category/tools">ツール(2)</a>
         </div>
         

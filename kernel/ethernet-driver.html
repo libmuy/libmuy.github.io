@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethernetドライバー - LIBMUY</title>
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <script src="/assets/prism/prism.js"></script>
+
+    <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
+    <link rel="icon" href="/assets/images/logo_black_small.png">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="/kernel/ethernet-driver.html">
+
+    <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
+
+    <meta name="keywords" content="Ethernetドライバー, LIBMUY, ">
+    <meta name="description" content="">
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Ethernetドライバー | Libmuy’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Ethernetドライバー">
+<meta name="author" content="Libmuy">
+<meta property="og:locale" content="ja_JP">
+<meta name="description" content="Ethernetドライバー解析関連">
+<meta property="og:description" content="Ethernetドライバー解析関連">
+<link rel="canonical" href="http://libmuy.github.io/kernel/ethernet-driver.html">
+<meta property="og:url" content="http://libmuy.github.io/kernel/ethernet-driver.html">
+<meta property="og:site_name" content="Libmuy’s Blog">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-10-05T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Ethernetドライバー">
+<meta name="twitter:site" content="@libmuy">
+<meta name="twitter:creator" content="@Libmuy">
+<meta property="fb:admins" content="libmuy">
+<meta property="article:publisher" content="libmuy">
+<script type="application/ld+json">
+{"datePublished":"2021-10-05T00:00:00+09:00","description":"Ethernetドライバー解析関連","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/kernel/ethernet-driver.html"},"url":"http://libmuy.github.io/kernel/ethernet-driver.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Ethernetドライバー","dateModified":"2021-10-05T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body class="index">
+    <nav>
+        <a href="/">
+            <img src="/assets/images/logo.svg">
+            <span>LIBMUY</span>
+        </a>
+        <!-- 
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul> -->
+
+
+        <div class="menu">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+
+    </nav>
+    <div class="container">
+        <header id="header" itemscope="" itemtype="https://schema.org/WPHeader">
+    <div id="head-in">
+            <div id="sitename">
+                <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150" class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
+                    <span itemprop="name about">LIBMUY</span>
+                </a>
+            </div>
+    </div>
+</header>
+        <!-- <link rel="stylesheet" href="/assets/css/post.css"> -->
+
+<div id="primary" class="clearfix">
+    <div id="left-side">
+    <div id="side-fixed">
+        <div class="title">目次</div>
+        <ul id="" class="toc_list">
+<li class=" toc-h1">
+<a href="#about-napi">About NAPI</a>
+<ul>
+<li class=" toc-h3">
+<a href="#apis">APIs</a>
+<ul>
+<li class=" toc-h4"><a href="#essential">Essential</a></li>
+<li class=" toc-h4"><a href="#non-essential">Non-Essential</a></li>
+</ul>
+</li>
+<li class=" toc-h3"><a href="#design">Design</a></li>
+<li class=" toc-h3"><a href="#poll-function">Poll() function</a></li>
+<li class=" toc-h2"><a href="#files">Files</a></li>
+<li class=" toc-h2">
+<a href="#call-tree">call tree</a>
+<ul>
+<li class=" toc-h3"><a href="#path-from-interrupt-handler">Path from interrupt handler</a></li>
+<li class=" toc-h3"><a href="#path-from-platforms-poll">Path from platform’s poll</a></li>
+<li class=" toc-h3"><a href="#ethernet-drivers-event_handler">Ethernet driver’s event_handler:</a></li>
+<li class=" toc-h3"><a href="#path-from-ethernets-poll">Path from ethernet’s poll</a></li>
+<li class=" toc-h3"><a href="#path-from-probe">Path from probe()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+    </div>
+</div>
+<!--/#right-side-->
+    <main id="main">
+        <article>
+            <div id="core" class="grid">
+                <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
+                    <header id="article-header">
+                        <h1 class="entry-title" itemprop="headline name">Ethernetドライバー</h1>
+                    </header>
+                    <div class="clearfix">
+                        <p class="meta">
+                            <i class="far fa-clock"></i>
+                            <span class="date published">
+                                <time class="entry-date updated" datetime="2021-10-05T00:00:00+09:00" itemprop="datePublished">
+                                    05 Oct 2021
+                                </time>
+                            </span>
+                            <i class="fas fa-redo-alt"></i>
+                            <span class="date">
+                                <meta itemprop="dateModified" content="2021-10-06T23:28:47+09:00">
+                                06 Oct 2021
+                            </span>
+                        </p>
+
+                        <div id="toc_container">
+<span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
+                            <ul id="" class="toc_list">
+<li class=" toc-h1">
+<a href="#about-napi">About NAPI</a>
+<ul>
+<li class=" toc-h3">
+<a href="#apis">APIs</a>
+<ul>
+<li class=" toc-h4"><a href="#essential">Essential</a></li>
+<li class=" toc-h4"><a href="#non-essential">Non-Essential</a></li>
+</ul>
+</li>
+<li class=" toc-h3"><a href="#design">Design</a></li>
+<li class=" toc-h3"><a href="#poll-function">Poll() function</a></li>
+<li class=" toc-h2"><a href="#files">Files</a></li>
+<li class=" toc-h2">
+<a href="#call-tree">call tree</a>
+<ul>
+<li class=" toc-h3"><a href="#path-from-interrupt-handler">Path from interrupt handler</a></li>
+<li class=" toc-h3"><a href="#path-from-platforms-poll">Path from platform’s poll</a></li>
+<li class=" toc-h3"><a href="#ethernet-drivers-event_handler">Ethernet driver’s event_handler:</a></li>
+<li class=" toc-h3"><a href="#path-from-ethernets-poll">Path from ethernet’s poll</a></li>
+<li class=" toc-h3"><a href="#path-from-probe">Path from probe()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+                        </div>
+
+                        <p>Ethernetドライバー解析関連</p>
+
+<h1 id="about-napi">About NAPI</h1>
+
+<h3 id="apis">APIs</h3>
+
+<h4 id="essential">Essential</h4>
+<ul>
+  <li>
+<code>netif_napi_add(dev, napi, poll, weight)</code>
+    <ul>
+      <li>Initialises and registers <code>napi</code> structure for polling <code>dev</code>
+</li>
+    </ul>
+  </li>
+  <li>
+<code>napi_schedule(napi)</code>
+    <ul>
+      <li>Called by an IRQ handler to schedule a poll for <code>napi</code>
+</li>
+      <li>same as
+        <pre><code class="language-bash line-numbers">  if (napi_schedule_prep(napi))
+     __napi_schedule(napi);
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+<code>napi_complete(napi)</code>
+    <ul>
+      <li>Remove <code>napi</code> from the CPU poll list: it must be in the poll list on current cpu. 
+  This primitive is called by <code>napi-&gt;poll()</code>, when it completes its work. 
+  The structure cannot be out of poll list at this call, if it is then clearly it is a BUG().</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="non-essential">Non-Essential</h4>
+<ul>
+  <li>
+<code>netif_napi_del(napi)</code>
+    <ul>
+      <li>Unregisters napi structure; must be called after the associated device is unregistered. 
+  free_netdev(dev) will call netif_napi_del() for all napi_structs still 
+  associated with the net device, so it may not be necessary for the driver to call this directly.</li>
+    </ul>
+  </li>
+  <li>
+<code>napi_reschedule(napi)</code>
+    <ul>
+      <li>Called to reschedule polling for <code>napi</code> specifically for some deficient hardware.</li>
+    </ul>
+  </li>
+  <li>
+<code>__napi_complete(napi)</code>
+    <ul>
+      <li>same as <code>napi_complete()</code> but called when local interrupts are already disabled.</li>
+    </ul>
+  </li>
+  <li>
+<code>napi_disable(napi)</code>
+    <ul>
+      <li>Temporarily disables napi structure from being polled. May sleep if it is currently being polled</li>
+    </ul>
+  </li>
+  <li>
+<code>napi_enable(napi)</code>
+    <ul>
+      <li>Reenables napi structure for polling, after it was disabled using <code>napi_disable()</code>
+</li>
+    </ul>
+  </li>
+  <li>
+<code>napi_reschedule(napi)</code>
+    <ul>
+      <li>Called to reschedule polling for napi specifically for some deficient hardware.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="design">Design</h3>
+
+<ol>
+  <li>Register NAPI
+    <pre><code class="language-text line-numbers"> probe() -&gt; netif_napi_add()
+</code></pre>
+  </li>
+  <li>Driven be Interrupt
+    <pre><code class="language-text line-numbers"> Interrupt -&gt; napi_reschedule()
+</code></pre>
+  </li>
+  <li>poll when timing is right
+    <pre><code class="language-text line-numbers"> xxx? -&gt; napi's poll()
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="poll-function">Poll() function</h3>
+
+<p>defined as <code>int (*poll)(struct napi_struct *napi, int budget);</code>.</p>
+<ul>
+  <li>Packets should <em>NOT</em> be passed to netif_rx(); instead, use: <code>int netif_receive_skb(struct sk_buff *skb)</code>
+</li>
+</ul>
+
+<h2 id="files">Files</h2>
+
+<ul>
+  <li>
+<code>drivers/staging/fsl_ppfe/pfe_eth.h</code> ethernet driver header</li>
+  <li>
+<code>drivers/staging/fsl_ppfe/pfe_eth.c</code> ethernet driver source</li>
+  <li>
+<code>drivers/staging/fsl_ppfe/pfe_ls1012a_platform.c</code> platform common code</li>
+  <li>
+<code>drivers/staging/fsl_ppfe/pfe_platform.c</code>
+    <ul>
+      <li>this is not used, see <code>drivers/staging/fsl_ppfe/Makefile</code> below
+        <pre><code class="language-makefile line-numbers">  pfe-y += pfe_mod.o \
+  pfe_hw.o \
+  pfe_firmware.o \
+  pfe_ctrl.o \
+  pfe_ctrl_hal.o \
+  pfe_hif.o \
+  pfe_hif_lib.o\
+  pfe_eth.o \
+  pfe_perfmon.o \
+  pfe_sysfs.o \
+  pfe_debugfs.o \
+  pfe_ls1012a_platform.o \
+  pfe_hal.o  \
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="call-tree">call tree</h2>
+
+<h3 id="path-from-interrupt-handler">Path from interrupt handler</h3>
+<p>drivers/staging/fsl_ppfe/pfe_hif.c:</p>
+<pre><code class="language-c line-numbers">static irqreturn_t hif_isr(int irq, void *dev_id)
+{
+	struct pfe_hif *hif = (struct pfe_hif *) dev_id;
+...
+	if (napi_schedule_prep(&amp;hif-&gt;napi))
+	{
+		__napi_schedule(&amp;hif-&gt;napi);
+...
+</code></pre>
+
+<h3 id="path-from-platforms-poll">Path from platform’s poll</h3>
+<p>drivers/staging/fsl_ppfe/pfe_hif.c:</p>
+<pre><code class="language-c line-numbers">static int pfe_hif_rx_poll(struct napi_struct *napi, int budget)
+	work_done = pfe_hif_rx_process(hif, budget);
+		rtc = hif-&gt;RxtocleanIndex;
+		desc = hif-&gt;RxBase + rtc;
+		free_buf = client_put_rxpacket(&amp;hif-&gt;client[hif-&gt;client_id].rx_q[hif-&gt;qno],
+			(void *)pkt_hdr, len, flags, hif-&gt;client_ctrl, &amp;buf_size);
+		desc-&gt;data = DDR_PHYS_TO_PFE((u32)DMA_MAP_SINGLE(hif-&gt;dev, free_buf, hif-&gt;rx_buf_len[rtc], DMA_FROM_DEVICE));
+
+		hif_lib_indicate_client(hif-&gt;client_id, EVENT_RX_PKT_IND, hif-&gt;qno);
+            client-&gt;event_handler(client-&gt;priv, event_type, qno);
+</code></pre>
+
+<h3 id="ethernet-drivers-event_handler">Ethernet driver’s <code>event_handler:</code>
+</h3>
+<p>drivers/staging/fsl_ppfe/pfe_eth.c:</p>
+<pre><code class="language-c line-numbers">static int pfe_eth_open(struct net_device *dev)
+{
+...
+    client-&gt;event_handler   = pfe_eth_event_handler
+...  
+
+static int pfe_eth_event_handler(void *data, int event, int qno)
+{
+    switch (event) {
+        case EVENT_RX_PKT_IND:
+        if (qno == 0) {
+            __napi_schedule(&amp;priv-&gt;high_napi);
+        ...
+        else if (qno == 1) {
+            __napi_schedule(&amp;priv-&gt;low_napi);
+        else if (qno == 2) {
+            __napi_schedule(&amp;priv-&gt;lro_napi);
+...
+</code></pre>
+
+<h3 id="path-from-ethernets-poll">Path from ethernet’s poll</h3>
+<p>drivers/staging/fsl_ppfe/pfe_eth.c:</p>
+<pre><code class="language-c line-numbers">static int pfe_eth_lro_poll(struct napi_struct *napi, int budget)
+{
+	return pfe_eth_poll(priv, napi, 2, budget);
+...
+
+static int pfe_eth_low_poll(struct napi_struct *napi, int budget)
+{
+	return pfe_eth_poll(priv, napi, 1, budget);
+...
+
+static int pfe_eth_high_poll(struct napi_struct *napi, int budget )
+{
+	return pfe_eth_poll(priv, napi, 0, budget);
+...
+
+static int pfe_eth_poll(struct pfe_eth_priv_s *priv, struct napi_struct *napi, unsigned int qno, int budget)
+{
+...
+	skb = pfe_eth_rx_skb(dev, priv, qno);
+	skb-&gt;protocol = eth_type_trans(skb, dev);
+	netif_receive_skb(skb);
+
+</code></pre>
+
+<h3 id="path-from-probe">Path from probe()</h3>
+<p>drivers/staging/fsl_ppfe/pfe_ls1012a_platform.c:</p>
+<pre><code class="language-c line-numbers">static int pfe_platform_probe(struct platform_device *pdev)
+	rc = pfe_probe(pfe);
+		rc = pfe_hif_init(pfe);
+			netif_napi_add(&amp;hif-&gt;dummy_dev, &amp;hif-&gt;napi, pfe_hif_rx_poll, HIF_RX_POLL_WEIGHT);
+			err = request_irq(hif-&gt;irq, hif_isr, 0, "pfe_hif", hif);
+        rc = pfe_eth_init(pfe);
+	    	for (ii = 0; ii &lt; NUM_GEMAC_SUPPORT; ii++)
+    	    	err = pfe_eth_init_one(pfe, ii);
+					dev = alloc_etherdev_mq(sizeof (*priv), emac_txq_cnt);
+					dev-&gt;netdev_ops = &amp;pfe_netdev_ops;
+					netif_napi_add(dev, &amp;priv-&gt;low_napi, pfe_eth_low_poll, HIF_RX_POLL_WEIGHT - 16);
+					netif_napi_add(dev, &amp;priv-&gt;high_napi, pfe_eth_high_poll, HIF_RX_POLL_WEIGHT - 16);
+					netif_napi_add(dev, &amp;priv-&gt;lro_napi, pfe_eth_lro_poll, HIF_RX_POLL_WEIGHT - 16);
+					err = register_netdev(dev);
+...
+static struct of_device_id pfe_match[] = {
+    {
+        .compatible = "fsl,pfe",
+    },
+    {},
+};
+
+static struct platform_driver pfe_platform_driver = {
+    .probe = pfe_platform_probe,
+    .remove = pfe_platform_remove,
+    .driver = {
+        .name = "pfe",
+        .of_match_table = pfe_match,
+    },
+};
+
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+  <li><a href="https://wiki.linuxfoundation.org/networking/napi">Linuxfoundation WiKi</a></li>
+</ul>
+
+                    </div>
+                    <div class="meta-box">
+                        <p class="meta meta-u">
+                            
+                            
+                            
+                            
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/kernel/">カーネル</a>
+    
+    
+</span>
+                            <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/Kernel/">Kernel</a>
+    </span>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/Ethernet/">Ethernet</a>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/Driver/">Driver</a>
+    
+    
+</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    
+    <div id="right-side">
+    <div id="side-fixed">
+        <div class="title ">
+            <a href="/">HOME</a>
+        </div>
+        
+
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/linux">Linux(4)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 current">
+            <a href="/category/kernel">カーネル(5)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/network">ネットワーク(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/web">Web関連(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/tools">ツール(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/devtips">開発Tips(3)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/shell">シェル(1)</a>
+        </div>
+        
+        
+    </div>
+</div>
+<!--/#right-side-->
+</div>
+    </div>
+    <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
+    <script type="text/javascript" src="/assets/main.js"></script>    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <footer>
+        <div id="copyright">
+            <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span> <span itemprop="copyrightHolder name">Libmuy</span> All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+
+</html>

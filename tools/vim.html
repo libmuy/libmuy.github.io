@@ -7,16 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vim - LIBMUY</title>
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <script src="/assets/prism/prism.js"></script>
 
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
 
-    <link rel="stylesheet" href="/assets/css/wordpress.css">
-    <link rel="stylesheet" href="/assets/css/menubar_test.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="canonical" href="/tools/vim.html">
 
-    <link rel="stylesheet" href="/assets/prism/prism.css">
-    <script src="/assets/prism/prism.js"></script>
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
     <meta name="keywords" content="Vim, LIBMUY, ">
@@ -29,8 +28,8 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="description" content="VIMの使い方メモ">
 <meta property="og:description" content="VIMの使い方メモ">
-<link rel="canonical" href="http://0.0.0.0:4000/tools/vim.html">
-<meta property="og:url" content="http://0.0.0.0:4000/tools/vim.html">
+<link rel="canonical" href="http://libmuy.github.io/tools/vim.html">
+<meta property="og:url" content="http://libmuy.github.io/tools/vim.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-03-01T00:00:00+09:00">
@@ -41,7 +40,7 @@
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"headline":"Vim","dateModified":"2018-03-01T00:00:00+09:00","datePublished":"2018-03-01T00:00:00+09:00","description":"VIMの使い方メモ","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"url":"http://0.0.0.0:4000/tools/vim.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/tools/vim.html"},"@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"datePublished":"2018-03-01T00:00:00+09:00","description":"VIMの使い方メモ","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/tools/vim.html"},"url":"http://libmuy.github.io/tools/vim.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Vim","dateModified":"2018-03-01T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -78,116 +77,50 @@
             </div>
     </div>
 </header>
-        <style type="text/css">
-    #toc_container {
-        display: none;
-    }
-
-    #left_toc {
-        width: calc(var(--side-width) * 1.5);
-        float: left;
-        position: sticky;
-        top: 0;
-    }
-
-    #left_toc a {
-        color: var(--nav-color);
-    }
-
-    #left_toc a:hover {
-        color: var(--nav-active-color);
-    }
-
-    ul.toc_list {
-        padding: 0.5em 0.5em 0.5em 2em;
-    }
-
-    .toc_list ul {
-        padding-left: 1.5em;
-    }
-
-    ul.toc_list li {
-        line-height: 1.5;
-        /*文の行高*/
-        padding: 0.5em 0;
-        /*前後の文との余白*/
-    }
-
-    .toc_title {
-        text-align: center;
-        border-bottom: solid 1px var(--nav-color);
-        padding-bottom: 5px;
-        margin-bottom: 10px;
-    }
-
-    #main {
-        width: calc(100% - (var(--side-width) * 2.5));
-    }
-
-    @media screen and (max-width: 500px) {
-        #toc_container {
-            display: block;
-        }
-
-        #left_toc {
-            display: none;
-        }
-
-        #main {
-            width: 100%;
-        }
-
-    }
-
-    @media screen and (max-width: 950px) {
-        #toc_container {
-            display: block;
-        }
-
-        #left_toc {
-            display: none;
-        }
-
-        #main {
-            width: calc(100% - (var(--side-width) * 1));
-        }
-
-    }
-</style>
+        <!-- <link rel="stylesheet" href="/assets/css/post.css"> -->
 
 <div id="primary" class="clearfix">
-    <div id="left_toc">
+    <div id="left-side">
     <div id="side-fixed">
-        <div class="toc_title">目次</div>
+        <div class="title">目次</div>
         <ul id="" class="toc_list">
 <li class=" toc-h1">
-<a href="#window-operations">Window Operations</a>
+<a href="#window%E3%81%AE%E9%96%A2%E9%80%A3%E6%93%8D%E4%BD%9C">Windowの関連操作</a>
 <ul>
 <li class=" toc-h2">
-<a href="#resize-windows">Resize windows</a>
+<a href="#%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%BA">リサイズ</a>
 <ul>
-<li class=" toc-h3"><a href="#command-reseze--res">command :reseze / :res</a></li>
-<li class=" toc-h3"><a href="#key-c-w-">key C-w ...</a></li>
+<li class=" toc-h3"><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89reseze--res">コマンド：:reseze / :res</a></li>
+<li class=" toc-h3"><a href="#%E3%82%AD%E3%83%BCc-w-">キー：C-w ...</a></li>
 </ul>
 </li>
-<li class=" toc-h2"><a href="#split-window">Split window</a></li>
-<li class=" toc-h2"><a href="#delete-window">Delete window</a></li>
-<li class=" toc-h2"><a href="#move-between-windows">Move between windows</a></li>
+<li class=" toc-h2"><a href="#%E5%88%86%E5%89%B2">分割</a></li>
+<li class=" toc-h2"><a href="#%E9%96%89%E3%81%98%E3%82%8B">閉じる</a></li>
+<li class=" toc-h2"><a href="#window%E9%96%93%E7%A7%BB%E5%8B%95">Window間移動</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#diffsplit">Diffsplit</a></li>
+<li class=" toc-h1"><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%AF%94%E8%BC%83">ファイル比較</a></li>
 <li class=" toc-h1">
-<a href="#mark">Mark</a>
+<a href="#bookmark">Bookmark</a>
 <ul>
-<li class=" toc-h2"><a href="#normal-operations">Normal operations</a></li>
+<li class=" toc-h2"><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">コマンド</a></li>
+<li class=" toc-h2"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E5%90%8D">レジスタ名</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#regexp">Regexp</a></li>
+<li class=" toc-h1"><a href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE">正規表現</a></li>
 <li class=" toc-h1">
-<a href="#copy--paste">Copy &amp; Paste</a>
+<a href="#copy-%E3%81%A8-paste">Copy と Paste</a>
 <ul>
-<li class=" toc-h3"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E3%82%92%E8%A1%A8%E7%A4%BA">レジスタを表示</a></li>
-<li class=" toc-h3"><a href="#0-%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF">0 レジスタ</a></li>
+<li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
+<li class=" toc-h2"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E3%82%92%E8%A1%A8%E7%A4%BA">レジスタを表示</a></li>
+<li class=" toc-h2"><a href="#0-9--%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF">0-9/- レジスタ</a></li>
+</ul>
+</li>
+<li class=" toc-h1">
+<a href="#%E6%A4%9C%E7%B4%A2%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88">検索・置き換え</a>
+<ul>
+<li class=" toc-h2"><a href="#%E6%A4%9C%E7%B4%A2%E6%99%82">検索時</a></li>
+<li class=" toc-h2"><a href="#%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88%E6%99%82">置き換え時</a></li>
 </ul>
 </li>
 <li class=" toc-h1">
@@ -196,18 +129,11 @@
 <li class=" toc-h3"><a href="#%E8%89%B2%E3%81%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%8D">色がなくなったとき</a></li>
 </ul>
 </li>
-<li class=" toc-h1">
-<a href="#search--rplace">Search &amp; Rplace</a>
-<ul>
-<li class=" toc-h3"><a href="#when-searching">When searching:</a></li>
-<li class=" toc-h3"><a href="#when-replacing">When replacing:</a></li>
-</ul>
-</li>
-<li class=" toc-h1"><a href="#indent">Indent</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
     </div>
 </div>
-<!--/#side-->
+<!--/#right-side-->
     <main id="main">
         <article>
             <div id="core" class="grid">
@@ -225,8 +151,8 @@
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="">
-                                
+                                <meta itemprop="dateModified" content="2021-10-06T23:28:47+09:00">
+                                06 Oct 2021
                             </span>
                         </p>
 
@@ -234,33 +160,42 @@
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
                             <ul id="" class="toc_list">
 <li class=" toc-h1">
-<a href="#window-operations">Window Operations</a>
+<a href="#window%E3%81%AE%E9%96%A2%E9%80%A3%E6%93%8D%E4%BD%9C">Windowの関連操作</a>
 <ul>
 <li class=" toc-h2">
-<a href="#resize-windows">Resize windows</a>
+<a href="#%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%BA">リサイズ</a>
 <ul>
-<li class=" toc-h3"><a href="#command-reseze--res">command :reseze / :res</a></li>
-<li class=" toc-h3"><a href="#key-c-w-">key C-w ...</a></li>
+<li class=" toc-h3"><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89reseze--res">コマンド：:reseze / :res</a></li>
+<li class=" toc-h3"><a href="#%E3%82%AD%E3%83%BCc-w-">キー：C-w ...</a></li>
 </ul>
 </li>
-<li class=" toc-h2"><a href="#split-window">Split window</a></li>
-<li class=" toc-h2"><a href="#delete-window">Delete window</a></li>
-<li class=" toc-h2"><a href="#move-between-windows">Move between windows</a></li>
+<li class=" toc-h2"><a href="#%E5%88%86%E5%89%B2">分割</a></li>
+<li class=" toc-h2"><a href="#%E9%96%89%E3%81%98%E3%82%8B">閉じる</a></li>
+<li class=" toc-h2"><a href="#window%E9%96%93%E7%A7%BB%E5%8B%95">Window間移動</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#diffsplit">Diffsplit</a></li>
+<li class=" toc-h1"><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%AF%94%E8%BC%83">ファイル比較</a></li>
 <li class=" toc-h1">
-<a href="#mark">Mark</a>
+<a href="#bookmark">Bookmark</a>
 <ul>
-<li class=" toc-h2"><a href="#normal-operations">Normal operations</a></li>
+<li class=" toc-h2"><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89">コマンド</a></li>
+<li class=" toc-h2"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E5%90%8D">レジスタ名</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#regexp">Regexp</a></li>
+<li class=" toc-h1"><a href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE">正規表現</a></li>
 <li class=" toc-h1">
-<a href="#copy--paste">Copy &amp; Paste</a>
+<a href="#copy-%E3%81%A8-paste">Copy と Paste</a>
 <ul>
-<li class=" toc-h3"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E3%82%92%E8%A1%A8%E7%A4%BA">レジスタを表示</a></li>
-<li class=" toc-h3"><a href="#0-%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF">0 レジスタ</a></li>
+<li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
+<li class=" toc-h2"><a href="#%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF%E3%82%92%E8%A1%A8%E7%A4%BA">レジスタを表示</a></li>
+<li class=" toc-h2"><a href="#0-9--%E3%83%AC%E3%82%B8%E3%82%B9%E3%82%BF">0-9/- レジスタ</a></li>
+</ul>
+</li>
+<li class=" toc-h1">
+<a href="#%E6%A4%9C%E7%B4%A2%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88">検索・置き換え</a>
+<ul>
+<li class=" toc-h2"><a href="#%E6%A4%9C%E7%B4%A2%E6%99%82">検索時</a></li>
+<li class=" toc-h2"><a href="#%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88%E6%99%82">置き換え時</a></li>
 </ul>
 </li>
 <li class=" toc-h1">
@@ -269,73 +204,75 @@
 <li class=" toc-h3"><a href="#%E8%89%B2%E3%81%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%8D">色がなくなったとき</a></li>
 </ul>
 </li>
-<li class=" toc-h1">
-<a href="#search--rplace">Search &amp; Rplace</a>
-<ul>
-<li class=" toc-h3"><a href="#when-searching">When searching:</a></li>
-<li class=" toc-h3"><a href="#when-replacing">When replacing:</a></li>
-</ul>
-</li>
-<li class=" toc-h1"><a href="#indent">Indent</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
                         </div>
 
                         <p>VIMの使い方メモ</p>
 
-<h1 id="window-operations">Window Operations</h1>
+<h1 id="windowの関連操作">
+<code>Window</code>の関連操作</h1>
 
-<h2 id="resize-windows">Resize windows</h2>
+<h2 id="リサイズ">リサイズ</h2>
 
-<h3 id="command-reseze--res">command <code>:reseze</code> / <code>:res</code>
+<p>操作の単位は行、列</p>
+
+<h3 id="コマンドreseze--res">コマンド：<code>:reseze</code> / <code>:res</code>
 </h3>
 
-<p>To set window height to 60</p>
-<pre><code class="line-numbers">:resize 60 
+<ul>
+  <li>高さを60に
+    <pre><code class="language-vim line-numbers">:resize 60 
 </code></pre>
-
-<p>To change the height by increments of 5</p>
-<pre><code class="line-numbers">:res +5
+  </li>
+  <li>現在の高さから5を減らす
+    <pre><code class="language-vim line-numbers">:res +5
 :res -5
 </code></pre>
-
-<p>To change window width :vertical resize</p>
-<pre><code class="line-numbers">:vertical resize 80
+  </li>
+  <li>幅を変更時は、<code>:vertical</code>をつける
+    <pre><code class="language-vim line-numbers">:vertical resize 80
 :vertical resize +5
 :vertical resize -5
 </code></pre>
+  </li>
+</ul>
 
-<h3 id="key-c-w-">key <code>C-w ...</code>
+<h3 id="キーc-w-">キー：<code>C-w ...</code>
 </h3>
 
 <ul>
   <li>
-<code>C-w +</code> / <code>C-w -</code>  : height +1 / -1 row</li>
+<code>C-w +</code> / <code>C-w -</code>  : 1行づつ増やす/減らす</li>
   <li>
-<code>C-w &lt;</code> / <code>C-w &gt;</code>  : width  +1 / -1 column</li>
+<code>C-w &lt;</code> / <code>C-w &gt;</code>  : 1列づつ増やす/減らす</li>
 </ul>
 
-<h2 id="split-window">Split window</h2>
+<h2 id="分割">分割</h2>
+
 <ul>
   <li>
-<code>C-w s</code> / <code>C-w v</code>  : split window horizontal / vertical</li>
+<code>C-w s</code> / <code>C-w v</code>  : 横/縦分割</li>
   <li>
-<code>:split/sp [path]</code> / <code>:vsplit/vs [path]</code>  : split window horizontal / vertical and open a file optional</li>
+<code>:split/sp [path]</code> / <code>:vsplit/vs [path]</code>  : 横/縦分割してファイルを開く</li>
 </ul>
 
-<h2 id="delete-window">Delete window</h2>
+<h2 id="閉じる">閉じる</h2>
+
 <ul>
   <li>
-<code>C-w o</code> / <code>C-w C-o</code>  : will delete all other windows</li>
+<code>C-w o</code> / <code>C-w C-o</code>  : 他のWindowを閉じる</li>
+  <li>
+<code>q:</code> ： 現在のWindowを閉じる</li>
 </ul>
 
-<h2 id="move-between-windows">Move between windows</h2>
+<h2 id="window間移動">Window間移動</h2>
 <ul>
   <li>
-<code>C-w &lt;ARROW&gt;</code>  : will move to windows <arrow> pointed to</arrow>
-</li>
+<code>C-w &lt;ARROW&gt;</code>  : 矢印方向のWindowに移動</li>
 </ul>
 
-<h1 id="diffsplit">Diffsplit</h1>
+<h1 id="ファイル比較">ファイル比較</h1>
 
 <ul>
   <li>
@@ -350,19 +287,73 @@
 <code>[c</code>  : 前の差分へ移動</li>
 </ul>
 
-<h1 id="mark">Mark</h1>
+<p>This `is not a code span!</p>
 
-<h2 id="normal-operations">Normal operations</h2>
+<h1 id="bookmark">Bookmark</h1>
+
+<h2 id="コマンド">コマンド</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">コマンド</th>
+      <th style="text-align: left">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code>:marks</code></td>
+      <td style="text-align: left">mark一覧を表示する</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>m[a-zA-Z]</code></td>
+      <td style="text-align: left">カーソル位置をmarkする</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">``</td>
+      <td style="text-align: left">直前のマークへ移動</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>C-o</code></td>
+      <td style="text-align: left">古いマークへ移動</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>C-i</code></td>
+      <td style="text-align: left">新しいマークへ移動</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>'[a-zA-Z]</code></td>
+      <td style="text-align: left">指定のマークの行頭に移動</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>:delmarks [a-zA-Z]</code></td>
+      <td style="text-align: left">マークの削除</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code>:delmarks!</code></td>
+      <td style="text-align: left">マークの一括削除</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">`[a-zA-Z]</td>
+      <td style="text-align: left">指定のマークに移動</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="レジスタ名">レジスタ名</h2>
+
 <ul>
-  <li>Each file can have mark <code>a</code> 			–– use a lowercase mark to jump within a file.</li>
-  <li>There is only one file mark <code>A</code> 		–– use an uppercase mark to jump between files.</li>
+  <li>小文字名称（<code>a</code>）：ファイルローカル各ファイル同じ名称でもよい</li>
+  <li>大文字名称（<code>A</code>）：グローバル名称で、ファイル間のジャンプに使える</li>
 </ul>
 
-<h1 id="regexp">Regexp</h1>
+<h1 id="正規表現">正規表現</h1>
 
 <p><a href="https://qiita.com/kawaz/items/d0708a4ab08e572f38f3">vim正規表現リファレンス</a></p>
 
-<h1 id="copy--paste">Copy &amp; Paste</h1>
+<h1 id="copy-と-paste">Copy と Paste</h1>
+
+<h2 id="概要">概要</h2>
 
 <ol>
   <li>y (yank) d (delete) c (change)　すると、その文字列は<code>無名レジスタ</code>に蓄えられます。</li>
@@ -371,39 +362,30 @@
   <li>明示的にレジスタを指定して貼り付ける時は <code>"ap</code> や <code>"bP</code> などとします。</li>
 </ol>
 
-<h3 id="レジスタを表示">レジスタを表示</h3>
+<h2 id="レジスタを表示">レジスタを表示</h2>
 
 <ul>
   <li><code>:di</code></li>
   <li><code>:reg</code></li>
 </ul>
 
-<h3 id="0-レジスタ">0 レジスタ</h3>
+<h2 id="0-9--レジスタ">
+<code>0</code>-<code>9</code>/<code>-</code> レジスタ</h2>
 
-<ol>
+<ul>
   <li>
-<code>y</code> -&gt; 内容１を<code>無名レジスタ</code>に格納</li>
+<code>0</code>：コピーしたテキスト</li>
   <li>
-<code>d</code> -&gt; 内容２を<code>無名レジスタ</code>に格納、もともと<code>無名レジスタ</code>に格納していた内容１を<code>0レジスタ</code>に退避</li>
+<code>1</code>~<code>9</code>：新しく削除した行を<code>1</code>に入れ、<code>1</code>の内容→<code>2</code>、<code>2</code>の内容→<code>3</code>のように順次格納し、<code>9</code>が破棄される</li>
   <li>
-<code>d</code> -&gt; 内容３を<code>無名レジスタ</code>に格納、もともと<code>無名レジスタ</code>に格納していた内容２を<code>0レジスタ</code>に退避 <strong>しない</strong>
-</li>
-</ol>
+<code>-</code>：1行以下は小削除した内容を<code>-</code>に格納される</li>
+</ul>
 
-<p>これで、<code>y</code>した内容を<code>"0p</code>で貼り付けできる
-<code>d</code>を実行時は、<code>無名レジスタ</code>を <strong>退避しない</strong></p>
-
-<h1 id="highlight">Highlight</h1>
-
-<h3 id="色がなくなったとき">色がなくなったとき</h3>
-
-<p><code>set filetype=c</code></p>
-
-<h1 id="search--rplace">Search &amp; Rplace</h1>
+<h1 id="検索置き換え">検索・置き換え</h1>
 
 <p><a href="http://vim.wikia.com/wiki/Search_and_replace">vim wiki</a></p>
 
-<h3 id="when-searching">When searching:</h3>
+<h2 id="検索時">検索時</h2>
 
 <ul>
   <li>
@@ -422,7 +404,7 @@
 <code>\(foo\)</code> makes a backreference to <code>foo</code>. Parenthesis without escapes are literally matched. Here the <code>\</code> is required for the closing <code>\)</code>.</li>
 </ul>
 
-<h3 id="when-replacing">When replacing:</h3>
+<h2 id="置き換え時">置き換え時</h2>
 
 <ul>
   <li>
@@ -438,9 +420,13 @@
 <p>example : swap 2 arguments
 <code>:%s/writel(te4395_host-&gt;dma.base\(.*\), \(.*\))/writel(\2, te4395_host-&gt;dma\.base\1)/gc</code></p>
 
-<h1 id="indent">Indent</h1>
+<h1 id="highlight">Highlight</h1>
 
-<p>reference:</p>
+<h3 id="色がなくなったとき">色がなくなったとき</h3>
+
+<p><code>set filetype=c</code></p>
+
+<h1 id="参考">参考</h1>
 
 <ul>
   <li>Vim Wiki <a href="https://vim.fandom.com/wiki/Indenting_source_code">Indenting Source Code</a>
@@ -481,156 +467,84 @@
         </article>
     </main>
     
-    <div id="side">
-    <aside>
-        <div id="side-fixed">
-            <div class="home ">
-                <a href="/">HOME</a>
-            </div>
-            
-
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/linux">Linux(4)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/kernel">カーネル(4)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/network">ネットワーク(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/web">Web関連(3)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 current">
-                <a href="/category/tools">ツール(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/devtips">開発Tips(2)</a>
-            </div>
-            
-            
-            
-            
-
-
-            <div class="category-lv1 ">
-                <a href="/category/shell">シェル(1)</a>
-            </div>
-            
-            
+    <div id="right-side">
+    <div id="side-fixed">
+        <div class="title ">
+            <a href="/">HOME</a>
         </div>
-        <!-- <div id="search-4" class="widget widget_search">
-                    <h3 class="side-title">検索</h3>
-                    <div id="search" itemscope="" itemtype="https://schema.org/WebSite">
-                        <meta itemprop="url" content="https://linuxref.net/">
-                        <form itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction"
-                            method="get" class="search-form" action="https://linuxref.net/">
-                            <meta itemprop="target" content="https://linuxref.net/?s={s}"><label><input
-                                    itemprop="query-input" type="search" class="search-field" placeholder="  サイト内検索"
-                                    value="" name="s" title="サイト内検索" required=""></label><input type="submit"
-                                class="search-submit" value="検索">
-                        </form>
-                    </div>
-                </div>
-                <div id="search-4" class="widget widget_search">
-                    <h3 class="side-title">Debug</h3>
+        
 
-                    <div>site.data.a(level):</div>
-                    <div>site.data.b(level):</div>
-                    <div>site.data.c(level):</div>
-                    <div>site.data.d(level):</div>
-                    <div>page.data[category]:tools</div>
-                    <div>page.data[newdata]:</div>
+        
+        
+        
 
-                </div> -->
-    </aside>
+
+        <div class="category-lv1 ">
+            <a href="/category/linux">Linux(4)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/kernel">カーネル(5)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/network">ネットワーク(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/web">Web関連(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 current">
+            <a href="/category/tools">ツール(2)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/devtips">開発Tips(3)</a>
+        </div>
+        
+        
+        
+        
+
+
+        <div class="category-lv1 ">
+            <a href="/category/shell">シェル(1)</a>
+        </div>
+        
+        
+    </div>
 </div>
-<!--/#side-->
-
+<!--/#right-side-->
 </div>
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
-    <script>
-        const menu = document.querySelector('.menu');
-        const side = document.querySelector('#side');
-        //Get the button:
-        goToTopBtn = document.getElementById("goToTopBtn");
-
-
-        // When the user clicks on the button, scroll to the top of the document
-        function goToTopFunction() {
-            window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-            // document.body.scrollTop = 0; // For Safari
-            // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        menu.addEventListener('click', function () {
-            this.classList.toggle('toggle');
-            side.classList.toggle('toggle');
-        });
-
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function () {
-            var currentScrollPos = window.pageYOffset;
-            var nav = document.getElementsByTagName("nav")[0];
-
-            if (prevScrollpos > currentScrollPos) {
-                nav.style.top = "0";
-            } else {
-                nav.style.top = "-51px";
-            }
-            prevScrollpos = currentScrollPos;
-            console.log("currentScrollPos:" + currentScrollPos);
-            if (currentScrollPos > 300) {
-                goToTopBtn.style.visibility = "visible";
-                goToTopBtn.style.opacity = "0.5";
-            } else {
-                goToTopBtn.style.visibility = "hidden";
-                goToTopBtn.style.opacity = "0";
-            }
-        }
-
-
-    </script>
-    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <script type="text/javascript" src="/assets/main.js"></script>    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
             <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span> <span itemprop="copyrightHolder name">Libmuy</span> All Rights Reserved.</p>
