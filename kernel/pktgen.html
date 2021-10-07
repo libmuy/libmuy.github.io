@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pktgen - LIBMUY</title>
+    <title>カーネル内部のパケット生成機能：pktgen - LIBMUY</title>
     <link rel="stylesheet" href="/assets/prism/prism.css">
     <script src="/assets/prism/prism.js"></script>
 
@@ -18,29 +18,29 @@
 
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
-    <meta name="keywords" content="Pktgen, LIBMUY, ">
+    <meta name="keywords" content="カーネル内部のパケット生成機能：pktgen, LIBMUY, ">
     <meta name="description" content="">
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Pktgen | Libmuy’s Blog</title>
+<title>カーネル内部のパケット生成機能：pktgen | Libmuy’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1">
-<meta property="og:title" content="Pktgen">
+<meta property="og:title" content="カーネル内部のパケット生成機能：pktgen">
 <meta name="author" content="Libmuy">
 <meta property="og:locale" content="ja_JP">
-<meta name="description" content="Linux Kernelにあるpktgenのメモ">
-<meta property="og:description" content="Linux Kernelにあるpktgenのメモ">
-<link rel="canonical" href="http://libmuy.github.io/kernel/pktgen.html">
-<meta property="og:url" content="http://libmuy.github.io/kernel/pktgen.html">
+<meta name="description" content="ネットワークトラフィック生成器のpktgenの使い方です。">
+<meta property="og:description" content="ネットワークトラフィック生成器のpktgenの使い方です。">
+<link rel="canonical" href="http://0.0.0.0:4000/kernel/pktgen.html">
+<meta property="og:url" content="http://0.0.0.0:4000/kernel/pktgen.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-06-22T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:title" content="Pktgen">
+<meta property="twitter:title" content="カーネル内部のパケット生成機能：pktgen">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"datePublished":"2018-06-22T00:00:00+09:00","description":"Linux Kernelにあるpktgenのメモ","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/kernel/pktgen.html"},"url":"http://libmuy.github.io/kernel/pktgen.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Pktgen","dateModified":"2018-06-22T00:00:00+09:00","@context":"https://schema.org"}</script>
+{"datePublished":"2018-06-22T00:00:00+09:00","description":"ネットワークトラフィック生成器のpktgenの使い方です。","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/kernel/pktgen.html"},"url":"http://0.0.0.0:4000/kernel/pktgen.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"カーネル内部のパケット生成機能：pktgen","dateModified":"2018-06-22T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -97,7 +97,7 @@
             <div id="core" class="grid">
                 <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
                     <header id="article-header">
-                        <h1 class="entry-title" itemprop="headline name">Pktgen</h1>
+                        <h1 class="entry-title" itemprop="headline name">カーネル内部のパケット生成機能：pktgen</h1>
                     </header>
                     <div class="clearfix">
                         <p class="meta">
@@ -109,8 +109,8 @@
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-10-06T23:28:47+09:00">
-                                06 Oct 2021
+                                <meta itemprop="dateModified" content="2021-10-07T00:47:14+09:00">
+                                07 Oct 2021
                             </span>
                         </p>
 
@@ -124,7 +124,7 @@
 </ul>
                         </div>
 
-                        <p>Linux Kernelにある<code>pktgen</code>のメモ</p>
+                        <p>ネットワークトラフィック生成器の<code>pktgen</code>の使い方です。</p>
 
 <h1 id="カーネルオプション">カーネルオプション</h1>
 
@@ -264,7 +264,7 @@ Hardware name: Xacti-XZ01-CA72
 
 
         <div class="category-lv1 ">
-            <a href="/category/devtips">開発Tips(3)</a>
+            <a href="/category/devtips">開発Tips(4)</a>
         </div>
         
         
@@ -273,7 +273,7 @@ Hardware name: Xacti-XZ01-CA72
 
 
         <div class="category-lv1 ">
-            <a href="/category/shell">シェル(1)</a>
+            <a href="/category/shell">シェル(2)</a>
         </div>
         
         

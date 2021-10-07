@@ -28,21 +28,21 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="description" content="Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。">
 <meta property="og:description" content="Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。">
-<link rel="canonical" href="http://libmuy.github.io/web/jekyll-step-by-step.html">
-<meta property="og:url" content="http://libmuy.github.io/web/jekyll-step-by-step.html">
+<link rel="canonical" href="http://0.0.0.0:4000/web/jekyll-step-by-step.html">
+<meta property="og:url" content="http://0.0.0.0:4000/web/jekyll-step-by-step.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
-<meta property="og:image" content="http://libmuy.github.io/assets/images/2021-09-26-jekyll-step-by-step_cover.png">
+<meta property="og:image" content="http://0.0.0.0:4000/assets/images/2021-09-26-jekyll-step-by-step_cover.png">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-09-26T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
-<meta property="twitter:image" content="http://libmuy.github.io/assets/images/2021-09-26-jekyll-step-by-step_cover.png">
+<meta property="twitter:image" content="http://0.0.0.0:4000/assets/images/2021-09-26-jekyll-step-by-step_cover.png">
 <meta property="twitter:title" content="Jekyll Step by Step（ソースコード付き）">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"datePublished":"2021-09-26T00:00:00+09:00","description":"Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。","mainEntityOfPage":{"@type":"WebPage","@id":"http://libmuy.github.io/web/jekyll-step-by-step.html"},"url":"http://libmuy.github.io/web/jekyll-step-by-step.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"http://libmuy.github.io/assets/images/2021-09-26-jekyll-step-by-step_cover.png","headline":"Jekyll Step by Step（ソースコード付き）","dateModified":"2021-09-26T00:00:00+09:00","@context":"https://schema.org"}</script>
+{"datePublished":"2021-09-26T00:00:00+09:00","description":"Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/web/jekyll-step-by-step.html"},"url":"http://0.0.0.0:4000/web/jekyll-step-by-step.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"http://0.0.0.0:4000/assets/images/2021-09-26-jekyll-step-by-step_cover.png","headline":"Jekyll Step by Step（ソースコード付き）","dateModified":"2021-09-26T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -94,7 +94,19 @@
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">ソースコード</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#%EF%BC%92liquid">２．Liquid</a></li>
+<li class=" toc-h1">
+<a href="#%EF%BC%92liquid">２．Liquid</a>
+<ul>
+<li class=" toc-h2"><a href="#liquid%E3%81%AE%E6%A6%82%E8%A6%81">Liquidの概要</a></li>
+<li class=" toc-h2">
+<a href="#liquid%E3%81%AE%E5%AE%9F%E4%BE%8B">Liquidの実例</a>
+<ul>
+<li class=" toc-h3"><a href="#%E8%AA%AC%E6%98%8E-1">説明：</a></li>
+</ul>
+</li>
+<li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-1">ソースコード</a></li>
+</ul>
+</li>
 <li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
     </div>
@@ -117,8 +129,8 @@
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-10-01T22:53:07+09:00">
-                                01 Oct 2021
+                                <meta itemprop="dateModified" content="2021-10-07T11:09:14+09:00">
+                                07 Oct 2021
                             </span>
                         </p>
 
@@ -133,7 +145,19 @@
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">ソースコード</a></li>
 </ul>
 </li>
-<li class=" toc-h1"><a href="#%EF%BC%92liquid">２．Liquid</a></li>
+<li class=" toc-h1">
+<a href="#%EF%BC%92liquid">２．Liquid</a>
+<ul>
+<li class=" toc-h2"><a href="#liquid%E3%81%AE%E6%A6%82%E8%A6%81">Liquidの概要</a></li>
+<li class=" toc-h2">
+<a href="#liquid%E3%81%AE%E5%AE%9F%E4%BE%8B">Liquidの実例</a>
+<ul>
+<li class=" toc-h3"><a href="#%E8%AA%AC%E6%98%8E-1">説明：</a></li>
+</ul>
+</li>
+<li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-1">ソースコード</a></li>
+</ul>
+</li>
 <li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
 </ul>
                         </div>
@@ -182,16 +206,70 @@ shell:~/jekyll-step-by-step$ vi index.html
 
 <h2 id="ソースコード">ソースコード</h2>
 
-<p><a href="https://github.com/libmuy/jekyll-step-by-step/tree/c8701036bae9a333dc5225e5ae88cf5dc07fea08">githubページ</a>をご参考ください。</p>
+<p><a href="https://github.com/libmuy/jekyll-step-by-step/tree/58f36217f44d4e656a448465d4b09bea18cff5a7">githubページ</a>をご参考ください。</p>
 
 <h1 id="２liquid">２．Liquid</h1>
+
+<h2 id="liquidの概要">Liquidの概要</h2>
+
+<p>Jekyllでは、テンプレートのためにテンプレート用言語のLiquidを使用しています。
+最初は難しく聞こえるかもしれないが、C言語のようなププログラミング言語に比べてとてもシンプルな言語です。
+とりあえず下記3つを覚えておく：</p>
+
+<ul>
+  <li>オブジェクト（変数）：2つの中括弧を使用して（例えば、<code>{{ variable }}</code>）出力する</li>
+  <li>タグ：中括弧とパーセントで囲んで使う。（例えば、<code>{% if statement %}</code>）</li>
+  <li>フィルター：オブジェクトの内容を処理する（例えば、<code>{{ "HI" | downcase }}</code>は小文字に変換する）</li>
+</ul>
+
+<p>開発中の参照資料として、</p>
+<ul>
+  <li><a href="http://jekyllrb-ja.github.io/docs/liquid/filters/">Jekyllドキュメント：フィルター</a></li>
+  <li><a href="https://shopify.github.io/liquid/">Liquidの公式ドキュメント</a></li>
+</ul>
+
+<h2 id="liquidの実例">Liquidの実例</h2>
+
+<p>実例を見てみましょう</p>
+
+<pre><code class="language-liquid line-numbers">    {% assign color = "red" %}
+    {% assign size = 100 %}
+    {% if size &gt; 50 %}
+    These {{color}} shoes are awesome.
+    {% else %}
+    These {{color}} shoes are too small.
+    {% endif %}
+</code></pre>
+<h3 id="説明-1">説明：</h3>
+
+<ul>
+  <li>
+<code>assign</code>タグは、変数の値を設定、例に変数<code>color</code>の値が<code>"red"</code>になる</li>
+  <li>
+<code>if</code>/<code>else</code>/<code>endif</code>タグは、条件分岐の制御をする、通常のプログラミング言語と同じ</li>
+  <li>
+<code>{{}}</code>を使って変数<code>color</code>の値を出力している</li>
+</ul>
+
+<p>上記の出力：<code>These red shoes are awesome.</code>である<br>
+変数<code>size</code>の値を50以下例えば<code>10</code>にすると、出力が<code>These red shoes are too small.</code>になる</p>
+
+<p>注意：Liquid処理を有効するには、Jekyllに通知する必要で、ページの先頭にfront matterを追加する必要があります。
+下記をファイル先頭に記載</p>
+<pre><code class="language-liquid line-numbers">---
+# front matter tells Jekyll to process Liquid
+---
+</code></pre>
+
+<h2 id="ソースコード-1">ソースコード</h2>
+
+<p><a href="https://github.com/libmuy/jekyll-step-by-step/tree/fe0fe9ae43567702e7bd67f8b231bfa816735c1b">githubページ</a>をご参考ください。</p>
 
 <h1 id="参考">参考</h1>
 
 <ul>
   <li><a href="http://jekyllrb-ja.github.io/docs/step-by-step/01-setup/">公式サイトのStep by Step チュートリアル</a></li>
   <li><a href="https://shopify.github.io/liquid/">official Liquid Documentation</a></li>
-  <li>
 </ul>
 
                     </div>
@@ -290,7 +368,7 @@ shell:~/jekyll-step-by-step$ vi index.html
 
 
         <div class="category-lv1 ">
-            <a href="/category/devtips">開発Tips(3)</a>
+            <a href="/category/devtips">開発Tips(4)</a>
         </div>
         
         
@@ -299,7 +377,7 @@ shell:~/jekyll-step-by-step$ vi index.html
 
 
         <div class="category-lv1 ">
-            <a href="/category/shell">シェル(1)</a>
+            <a href="/category/shell">シェル(2)</a>
         </div>
         
         
