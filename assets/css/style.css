@@ -39,8 +39,6 @@ img { max-width: 100%; }
   to { /* box-shadow: 0 5px 15px 0px rgba(255,255,255,0.6); */
     transform: translate(0, -6px); } }
 
-figure img { margin-right: 20px; }
-
 /* ======================= FOOTER ========================= */
 #footer { margin-top: auto; }
 
@@ -53,9 +51,9 @@ figure img { margin-right: 20px; }
 
 #list, .grid { margin: 20px; }
 
-.term { margin-right: 10px; }
+.term { margin: 0; }
 
-.term img { float: left; max-width: 40%; height: auto; margin-bottom: 15px; background: inherit; filter: drop-shadow(0 0 0.8rem rgba(0, 0, 0, 0.5)); }
+.term img { float: left; height: auto; margin-right: 10px; background: inherit; filter: drop-shadow(0 0 0.8rem rgba(0, 0, 0, 0.5)); }
 
 #list a { word-break: normal; }
 
@@ -238,7 +236,7 @@ ul.toc_list li { line-height: 1.5; /*文の行高*/ padding: 0.5em 0; /*前後�
 
 @media (max-width: 950px) { #toc_container { display: block; } #left-side { display: none; } }
 
-@media (max-width: 600px) { #toc_container { display: block; } #left-side { display: none; } nav { display: flex; } .menu { display: block; margin-left: auto; } #right-side { position: fixed; top: 51px; left: 100%; transition: 0.5s; width: 200px; } #right-side.toggle { transform: translateX(-100%); } #sitename img { height: 100px; width: 100px; } #goToTopBtn { width: 60px; right: 20px; bottom: 20px; } }
+@media (max-width: 600px) { #toc_container { display: block; } #left-side { display: none; } nav { display: flex; } .menu { display: block; margin-left: auto; } #right-side { position: fixed; top: 51px; left: 100%; transition: 0.5s; width: 200px; } #right-side.toggle { transform: translateX(-100%); } #sitename img { height: 100px; width: 100px; } #goToTopBtn { width: 60px; right: 20px; bottom: 20px; } .term img { float: none; width: 100%; object-fit: cover; max-height: 150px; } }
 
 .section-nav { margin: 40px; padding: 10px; display: flex; justify-content: space-evenly; align-items: center; }
 
