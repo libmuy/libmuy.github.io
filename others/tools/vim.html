@@ -45,7 +45,7 @@
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"description":"VIMの使い方メモ","url":"https://libmuy.github.io/others/tools/vim.html","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"vimのいろいろ便利の使い方","dateModified":"2018-03-01T00:00:00+09:00","datePublished":"2018-03-01T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/others/tools/vim.html"},"author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"datePublished":"2018-03-01T00:00:00+09:00","description":"VIMの使い方メモ","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/others/tools/vim.html"},"url":"https://libmuy.github.io/others/tools/vim.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"vimのいろいろ便利の使い方","dateModified":"2018-03-01T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -126,7 +126,7 @@
             date = moment.unix(hit.date).format('MMM D, YYYY');
         }
         let url = hit.url;
-        if (!hit.anchor == null) {
+        if (!(hit.anchor == null)) {
             url += `#${hit.anchor}`;
         }
         const title = hit._highlightResult.title.value;
@@ -161,9 +161,9 @@
     }
 
     // Create a render function
+    var suggestion = document.querySelector('#search-suggestion-container');
     const renderSearchBox = (renderOptions, isFirstRender) => {
         const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
-        var suggestion = document.querySelector('#search-suggestion-container');
         var removeSuggestionTimer;
 
         console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
@@ -174,8 +174,8 @@
                 refine(event.target.value);
             });
             input.addEventListener('focusout', (event) => {
-                removeSuggestionTimer = setTimeout(function(){
-                    // suggestion.style.display = 'none';
+                removeSuggestionTimer = setTimeout(function () {
+                    suggestion.style.display = 'none';
                 }, 300);
             });
 
@@ -229,6 +229,27 @@
             }
         })
     );
+
+    search.on('render', () => {
+        console.log("rendered");
+        var dataset = suggestion.getElementsByClassName('ds-dataset');
+        if (dataset.length == 0) return;
+        dataset = dataset[0];
+        var logodiv = document.getElementById("search-logo");
+        if (!(logodiv == null)) return;
+
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(`
+        <div id="search-logo" class="ds-suggestions">
+            <svg width="12" height="12" role="img" aria-label="Logo">
+                <use xlink:href="/assets/images/search-icon.svg#logo"></use>
+            </svg>
+        </div>
+        `, "text/html")
+
+        logodiv = doc.getElementById("search-logo");
+        dataset.appendChild(logodiv);
+    });
 
     search.start();
 </script>

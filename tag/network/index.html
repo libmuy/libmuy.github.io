@@ -42,7 +42,7 @@
 <meta property="fb:admins" content="libmuy" />
 <meta property="article:publisher" content="libmuy" />
 <script type="application/ld+json">
-{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/tag/network/","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"network","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/tag/network/","@type":"WebPage","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"network","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -124,7 +124,7 @@
             date = moment.unix(hit.date).format('MMM D, YYYY');
         }
         let url = hit.url;
-        if (!hit.anchor == null) {
+        if (!(hit.anchor == null)) {
             url += `#${hit.anchor}`;
         }
         const title = hit._highlightResult.title.value;
@@ -159,9 +159,9 @@
     }
 
     // Create a render function
+    var suggestion = document.querySelector('#search-suggestion-container');
     const renderSearchBox = (renderOptions, isFirstRender) => {
         const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
-        var suggestion = document.querySelector('#search-suggestion-container');
         var removeSuggestionTimer;
 
         console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
@@ -172,8 +172,8 @@
                 refine(event.target.value);
             });
             input.addEventListener('focusout', (event) => {
-                removeSuggestionTimer = setTimeout(function(){
-                    // suggestion.style.display = 'none';
+                removeSuggestionTimer = setTimeout(function () {
+                    suggestion.style.display = 'none';
                 }, 300);
             });
 
@@ -227,6 +227,27 @@
             }
         })
     );
+
+    search.on('render', () => {
+        console.log("rendered");
+        var dataset = suggestion.getElementsByClassName('ds-dataset');
+        if (dataset.length == 0) return;
+        dataset = dataset[0];
+        var logodiv = document.getElementById("search-logo");
+        if (!(logodiv == null)) return;
+
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(`
+        <div id="search-logo" class="ds-suggestions">
+            <svg width="12" height="12" role="img" aria-label="Logo">
+                <use xlink:href="/assets/images/search-icon.svg#logo"></use>
+            </svg>
+        </div>
+        `, "text/html")
+
+        logodiv = doc.getElementById("search-logo");
+        dataset.appendChild(logodiv);
+    });
 
     search.start();
 </script>
