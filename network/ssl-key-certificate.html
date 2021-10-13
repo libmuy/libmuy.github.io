@@ -16,9 +16,8 @@
     
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-
     <link rel="stylesheet" href="/assets/prism/prism.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <script src="/assets/prism/prism.js"></script>
 
@@ -83,7 +82,7 @@
             </a>
         </div>
         </div>
-        <div>
+        <div class="search-container">
             <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
     <div role="search" class="search-wrapper1">
         <span class="search-wrapper2">
@@ -162,6 +161,7 @@
 
     // Create a render function
     var suggestion = document.querySelector('#search-suggestion-container');
+    var clrBtn = document.querySelector('#clear-btn');
     const renderSearchBox = (renderOptions, isFirstRender) => {
         const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
         var removeSuggestionTimer;
@@ -169,7 +169,6 @@
         console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
         if (isFirstRender) {
             var input = document.querySelector('.search-input');
-            var clrBtn = document.querySelector('#clear-btn');
             input.addEventListener('input', event => {
                 refine(event.target.value);
             });
@@ -195,8 +194,10 @@
         }
         if (query.length > 0) {
             suggestion.style.display = 'block';
+            clrBtn.style.display = 'block';
         } else {
             suggestion.style.display = 'none';
+            clrBtn.style.display = 'none';
         }
 
         document.querySelector('input').value = query;
