@@ -13,13 +13,15 @@
         })(window, document, 'script', 'dataLayer', 'GTM-PSJJQ78');</script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/prism/prism.css">
-    <script src="/assets/prism/prism.js"></script>
+    
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+
+    <script src="/assets/prism/prism.js"></script>
+
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
@@ -40,17 +42,14 @@
 <meta property="fb:admins" content="libmuy" />
 <meta property="article:publisher" content="libmuy" />
 <script type="application/ld+json">
-{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/category/network/","@type":"WebPage","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"network","@context":"https://schema.org"}</script>
+{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/category/network/","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"network","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 
 <body class="index">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSJJQ78" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    
     <nav>
         <a href="/">
             <img src="/assets/images/logo.svg">
@@ -73,15 +72,165 @@
 
     </nav>
     <div class="container">
-        <header id="header" itemscope="" itemtype="https://schema.org/WPHeader">
+        <header id="header">
     <div id="head-in">
-            <div id="sitename">
-                <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150"
-                        class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
-                    <span itemprop="name about">LIBMUY</span>
-                </a>
-            </div>
+        <div id="sitename">
+            <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150"
+                    class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
+                <span itemprop="name about">LIBMUY</span>
+            </a>
+        </div>
+        </div>
+        <div>
+            <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
+    <div role="search" class="search-wrapper1">
+        <span class="search-wrapper2">
+            <input type="search" placeholder="Search the docs" required="required" class="search-input">
+            <span class="ds-dropdown-menu" role="listbox" id="search-suggestion-container">
+            </span>
+        </span>
+        <button type="submit" title="Submit your search query." class="search-submit-button">
+            <svg width="12" height="12" role="img" aria-label="Search">
+                <use xlink:href="/assets/images/search-icon.svg#search"></use>
+            </svg>
+        </button>
+        <button id="clear-btn" type="reset" title="Clear the search query." class="search-reset-button">
+            <svg width="12" height="12" role="img" aria-label="Reset">
+                <use xlink:href="/assets/images/search-icon.svg#reset"></use>
+            </svg>
+        </button>
     </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<script>
+    const search = instantsearch({
+        appId: 'BYSJ0BMMUA',
+        apiKey: '532e9a5e639b4c7b0de3ca2e25df117a',
+        indexName: 'blog'
+    });
+
+    const hitTemplate = function (hit) {
+        console.log("hitTemplate: hit:" + hit);
+        /* no display when no inputing */
+        if (hit._highlightResult == null || hit._highlightResult.content.matchedWords.length <= 0) {
+            return "";
+        }
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+        let url = hit.url;
+        if (!hit.anchor == null) {
+            url += `#${hit.anchor}`;
+        }
+        const title = hit._highlightResult.title.value;
+
+        let categories = '';
+        if (hit.category_name) {
+            categories = hit.category_name.split("/").map(match => {
+                return `<span class="post-breadcrumb">${match}</span>`
+            }).join(' > ')
+        }
+        const content = hit._highlightResult.content.value;
+
+        return `
+  <div class="ds-suggestion" role="option">
+    <a class="search-suggestion search-suggestion-secondary" aria-label="Link to the result" href="${url}">
+        <div class="search-suggestion-wrapper">
+            <div class="search-suggestion-subcategory-column">
+                <span class="search-suggestion-subcategory-column-text">${categories}</span>
+            </div>
+            <div class="search-suggestion-content">
+                <div class="search-suggestion-title">
+                    ${date}<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+                    ${title}
+                </div>
+                <div class="search-suggestion-text">
+                    ${content}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>`;
+    }
+
+    // Create a render function
+    const renderSearchBox = (renderOptions, isFirstRender) => {
+        const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+        var suggestion = document.querySelector('#search-suggestion-container');
+        var removeSuggestionTimer;
+
+        console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
+        if (isFirstRender) {
+            var input = document.querySelector('.search-input');
+            var clrBtn = document.querySelector('#clear-btn');
+            input.addEventListener('input', event => {
+                refine(event.target.value);
+            });
+            input.addEventListener('focusout', (event) => {
+                removeSuggestionTimer = setTimeout(function(){
+                    // suggestion.style.display = 'none';
+                }, 300);
+            });
+
+            suggestion.addEventListener('click', () => {
+                console.log("suggestion event:click");
+                clearTimeout(removeSuggestionTimer);
+            });
+            suggestion.addEventListener('contextmenu', () => {
+                console.log("suggestion event:right click");
+                clearTimeout(removeSuggestionTimer);
+            });
+
+            clrBtn.addEventListener('click', () => {
+                clear();
+            });
+
+        }
+        if (query.length > 0) {
+            suggestion.style.display = 'block';
+        } else {
+            suggestion.style.display = 'none';
+        }
+
+        document.querySelector('input').value = query;
+        document.querySelector('#clear-btn').hidden = !isSearchStalled;
+    };
+
+    // create custom widget
+    const customSearchBox = instantsearch.connectors.connectSearchBox(
+        renderSearchBox
+    );
+
+    // instantiate custom widget
+    search.addWidgets([
+        customSearchBox({
+            container: document.querySelector('.searchbox'),
+        })
+    ]);
+
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-suggestion-container',
+            templates: {
+                item: hitTemplate
+            },
+            cssClasses: {
+                root: 'ds-dataset',
+                emptyRoot: 'ds-dataset-empty',
+                list: 'ds-suggestions',
+                item: 'ds-suggestions',
+            }
+        })
+    );
+
+    search.start();
+</script>
+        </div>
 </header>
         <div id="primary" class="clearfix">
     <main id="main">
@@ -167,7 +316,7 @@
         <div class="toc grid clearfix">
             <section>
                 <h2 class="entry-title" itemprop="headline name"><a href="/network/wpa-supplicant.html" class="entry-link"
-                        itemprop="url">Wpa Supplicant</a></h2>
+                        itemprop="url">wpa_supplicant設定ファイル例</a></h2>
                 <p class="meta">
                     <i class="far fa-calendar-alt"></i>
                     <span class="date">
@@ -259,15 +408,6 @@
 
 
         <div class="category-lv1 ">
-            <a href="/category/devtips">devtips(1)</a>
-        </div>
-        
-        
-        
-        
-
-
-        <div class="category-lv1 ">
             <a href="/category/linux">Linux(4)</a>
         </div>
         
@@ -346,7 +486,8 @@
 </div>
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
-    <script type="text/javascript" src="/assets/main.js"></script> <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <script type="text/javascript" src="/assets/main.js"></script>
+    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
             <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span>&nbsp;<span
@@ -354,6 +495,9 @@
         </div>
     </footer>
 </div>
+
+
+    
 </body>
 
 </html>

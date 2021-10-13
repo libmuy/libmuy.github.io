@@ -14,13 +14,15 @@
         })(window, document, 'script', 'dataLayer', 'GTM-PSJJQ78');</script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/prism/prism.css">
-    <script src="/assets/prism/prism.js"></script>
+    
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
     <link rel="icon" href="/assets/images/logo_black_small.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+
+    <script src="/assets/prism/prism.js"></script>
+
     <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
@@ -36,7 +38,7 @@
 <meta property="og:site_name" content="Libmuy’s Blog">
 <meta property="og:image" content="https://libmuy.github.io/assets/images/jekyll.jpg">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2021-09-26T00:00:00+09:00">
+<meta property="article:published_time" content="2021-10-11T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
 <meta property="twitter:image" content="https://libmuy.github.io/assets/images/jekyll.jpg">
 <meta property="twitter:title" content="Jekyll Step by Step（ソースコード付き）">
@@ -45,16 +47,14 @@
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"datePublished":"2021-09-26T00:00:00+09:00","description":"Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/web/jekyll-step-by-step.html"},"url":"https://libmuy.github.io/web/jekyll-step-by-step.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"https://libmuy.github.io/assets/images/jekyll.jpg","headline":"Jekyll Step by Step（ソースコード付き）","dateModified":"2021-09-26T00:00:00+09:00","@context":"https://schema.org"}</script>
+{"description":"Jekyllのサイト作成した、公式サイトのStep by Step チュートリアル が最初の入門資料としてとても参考になり、ソースコードをつけて、簡単に整理します。","url":"https://libmuy.github.io/web/jekyll-step-by-step.html","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"https://libmuy.github.io/assets/images/jekyll.jpg","headline":"Jekyll Step by Step（ソースコード付き）","dateModified":"2021-10-11T00:00:00+09:00","datePublished":"2021-10-11T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/web/jekyll-step-by-step.html"},"author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 
 <body class="index">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSJJQ78" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    
     <nav>
         <a href="/">
             <img src="/assets/images/logo.svg">
@@ -77,14 +77,164 @@
 
     </nav>
     <div class="container">
-        <header id="header" itemscope="" itemtype="https://schema.org/WPHeader">
+        <header id="header">
     <div id="head-in">
-            <div id="sitename">
-                <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150" class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
-                    <span itemprop="name about">LIBMUY</span>
-                </a>
-            </div>
+        <div id="sitename">
+            <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150" class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
+                <span itemprop="name about">LIBMUY</span>
+            </a>
+        </div>
+        </div>
+        <div>
+            <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
+    <div role="search" class="search-wrapper1">
+        <span class="search-wrapper2">
+            <input type="search" placeholder="Search the docs" required="required" class="search-input">
+            <span class="ds-dropdown-menu" role="listbox" id="search-suggestion-container">
+            </span>
+        </span>
+        <button type="submit" title="Submit your search query." class="search-submit-button">
+            <svg width="12" height="12" role="img" aria-label="Search">
+                <use xlink:href="/assets/images/search-icon.svg#search"></use>
+            </svg>
+        </button>
+        <button id="clear-btn" type="reset" title="Clear the search query." class="search-reset-button">
+            <svg width="12" height="12" role="img" aria-label="Reset">
+                <use xlink:href="/assets/images/search-icon.svg#reset"></use>
+            </svg>
+        </button>
     </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<script>
+    const search = instantsearch({
+        appId: 'BYSJ0BMMUA',
+        apiKey: '532e9a5e639b4c7b0de3ca2e25df117a',
+        indexName: 'blog'
+    });
+
+    const hitTemplate = function (hit) {
+        console.log("hitTemplate: hit:" + hit);
+        /* no display when no inputing */
+        if (hit._highlightResult == null || hit._highlightResult.content.matchedWords.length <= 0) {
+            return "";
+        }
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+        let url = hit.url;
+        if (!hit.anchor == null) {
+            url += `#${hit.anchor}`;
+        }
+        const title = hit._highlightResult.title.value;
+
+        let categories = '';
+        if (hit.category_name) {
+            categories = hit.category_name.split("/").map(match => {
+                return `<span class="post-breadcrumb">${match}</span>`
+            }).join(' > ')
+        }
+        const content = hit._highlightResult.content.value;
+
+        return `
+  <div class="ds-suggestion" role="option">
+    <a class="search-suggestion search-suggestion-secondary" aria-label="Link to the result" href="${url}">
+        <div class="search-suggestion-wrapper">
+            <div class="search-suggestion-subcategory-column">
+                <span class="search-suggestion-subcategory-column-text">${categories}</span>
+            </div>
+            <div class="search-suggestion-content">
+                <div class="search-suggestion-title">
+                    ${date}<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+                    ${title}
+                </div>
+                <div class="search-suggestion-text">
+                    ${content}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>`;
+    }
+
+    // Create a render function
+    const renderSearchBox = (renderOptions, isFirstRender) => {
+        const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+        var suggestion = document.querySelector('#search-suggestion-container');
+        var removeSuggestionTimer;
+
+        console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
+        if (isFirstRender) {
+            var input = document.querySelector('.search-input');
+            var clrBtn = document.querySelector('#clear-btn');
+            input.addEventListener('input', event => {
+                refine(event.target.value);
+            });
+            input.addEventListener('focusout', (event) => {
+                removeSuggestionTimer = setTimeout(function(){
+                    // suggestion.style.display = 'none';
+                }, 300);
+            });
+
+            suggestion.addEventListener('click', () => {
+                console.log("suggestion event:click");
+                clearTimeout(removeSuggestionTimer);
+            });
+            suggestion.addEventListener('contextmenu', () => {
+                console.log("suggestion event:right click");
+                clearTimeout(removeSuggestionTimer);
+            });
+
+            clrBtn.addEventListener('click', () => {
+                clear();
+            });
+
+        }
+        if (query.length > 0) {
+            suggestion.style.display = 'block';
+        } else {
+            suggestion.style.display = 'none';
+        }
+
+        document.querySelector('input').value = query;
+        document.querySelector('#clear-btn').hidden = !isSearchStalled;
+    };
+
+    // create custom widget
+    const customSearchBox = instantsearch.connectors.connectSearchBox(
+        renderSearchBox
+    );
+
+    // instantiate custom widget
+    search.addWidgets([
+        customSearchBox({
+            container: document.querySelector('.searchbox'),
+        })
+    ]);
+
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-suggestion-container',
+            templates: {
+                item: hitTemplate
+            },
+            cssClasses: {
+                root: 'ds-dataset',
+                emptyRoot: 'ds-dataset-empty',
+                list: 'ds-suggestions',
+                item: 'ds-suggestions',
+            }
+        })
+    );
+
+    search.start();
+</script>
+        </div>
 </header>
         <!-- <link rel="stylesheet" href="/assets/css/post.css"> -->
 
@@ -92,34 +242,51 @@
     <div id="left-side">
     <div id="side-fixed">
         <div class="title">目次</div>
-        <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#%EF%BC%90%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">０．セットアップ</a></li>
+        <ol id="" class="toc_list">
+<li class=" toc-h1"><a href="#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">セットアップ</a></li>
 <li class=" toc-h1">
-<a href="#%EF%BC%91%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">１．サイトを作る</a>
-<ul>
+<a href="#%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">サイトを作る</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B">実例</a></li>
+<li class=" toc-h2"><a href="#%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">動作確認</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">ソースコード</a></li>
-</ul>
+</ol>
 </li>
 <li class=" toc-h1">
-<a href="#%EF%BC%92liquid">２．Liquid</a>
-<ul>
+<a href="#liquid">Liquid</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-1">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B-1">実例</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-1">ソースコード</a></li>
-</ul>
+</ol>
 </li>
 <li class=" toc-h1">
-<a href="#%EF%BC%93front-matter">３．Front Matter</a>
-<ul>
+<a href="#front-matter">Front Matter</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-2">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B-2">実例</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-2">ソースコード</a></li>
-</ul>
+</ol>
 </li>
-<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
-</ul>
+<li class=" toc-h1">
+<a href="#%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88">レイアウト</a>
+<ol>
+<li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-3">概要</a></li>
+<li class=" toc-h2">
+<a href="#%E5%AE%9F%E4%BE%8B-3">実例</a>
+<ol>
+<li class=" toc-h6"><a href="#markdown">Markdown</a></li>
+<li class=" toc-h6"><a href="#%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88-1">レイアウト</a></li>
+<li class=" toc-h6"><a href="#%E5%87%BA%E5%8A%9B">出力</a></li>
+</ol>
+</li>
+<li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-3">ソースコード</a></li>
+</ol>
+</li>
+<li class=" toc-h1"><a href="#include">include</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99">参考資料</a></li>
+</ol>
     </div>
 </div>
 <!--/#right-side-->
@@ -127,21 +294,21 @@
         <article>
             <div id="core" class="grid">
                 <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
-                    <header id="article-header">
+                    <div id="article-header">
                         <h1 class="entry-title" itemprop="headline name">Jekyll Step by Step（ソースコード付き）</h1>
-                    </header>
+                    </div>
                     <div class="clearfix">
                         <p class="meta">
                             <i class="far fa-clock"></i>
                             <span class="date published">
-                                <time class="entry-date updated" datetime="2021-09-26T00:00:00+09:00" itemprop="datePublished">
-                                    26 Sep 2021
+                                <time class="entry-date updated" datetime="2021-10-11T00:00:00+09:00" itemprop="datePublished">
+                                    11 Oct 2021
                                 </time>
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-10-10T00:23:10+09:00">
-                                10 Oct 2021
+                                <meta itemprop="dateModified" content="">
+                                
                             </span>
                         </p>
 
@@ -153,34 +320,51 @@
 
                         <div id="toc_container">
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
-                            <ul id="" class="toc_list">
-<li class=" toc-h1"><a href="#%EF%BC%90%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">０．セットアップ</a></li>
+                            <ol id="" class="toc_list">
+<li class=" toc-h1"><a href="#%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97">セットアップ</a></li>
 <li class=" toc-h1">
-<a href="#%EF%BC%91%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">１．サイトを作る</a>
-<ul>
+<a href="#%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">サイトを作る</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B">実例</a></li>
+<li class=" toc-h2"><a href="#%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">動作確認</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">ソースコード</a></li>
-</ul>
+</ol>
 </li>
 <li class=" toc-h1">
-<a href="#%EF%BC%92liquid">２．Liquid</a>
-<ul>
+<a href="#liquid">Liquid</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-1">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B-1">実例</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-1">ソースコード</a></li>
-</ul>
+</ol>
 </li>
 <li class=" toc-h1">
-<a href="#%EF%BC%93front-matter">３．Front Matter</a>
-<ul>
+<a href="#front-matter">Front Matter</a>
+<ol>
 <li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-2">概要</a></li>
 <li class=" toc-h2"><a href="#%E5%AE%9F%E4%BE%8B-2">実例</a></li>
 <li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-2">ソースコード</a></li>
-</ul>
+</ol>
 </li>
-<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
-</ul>
+<li class=" toc-h1">
+<a href="#%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88">レイアウト</a>
+<ol>
+<li class=" toc-h2"><a href="#%E6%A6%82%E8%A6%81-3">概要</a></li>
+<li class=" toc-h2">
+<a href="#%E5%AE%9F%E4%BE%8B-3">実例</a>
+<ol>
+<li class=" toc-h6"><a href="#markdown">Markdown</a></li>
+<li class=" toc-h6"><a href="#%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88-1">レイアウト</a></li>
+<li class=" toc-h6"><a href="#%E5%87%BA%E5%8A%9B">出力</a></li>
+</ol>
+</li>
+<li class=" toc-h2"><a href="#%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89-3">ソースコード</a></li>
+</ol>
+</li>
+<li class=" toc-h1"><a href="#include">include</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83%E8%B3%87%E6%96%99">参考資料</a></li>
+</ol>
                         </div>
 
                         <p>Jekyllのサイト作成した、公式サイトの<a href="http://jekyllrb-ja.github.io/docs/step-by-step/01-setup/">Step by Step チュートリアル</a>
@@ -193,14 +377,14 @@
 このプロセスを通じ、サイトのURLの見た目をどうするか、レイアウトでどのデータを表示するかなどを調整することができます。</p>
 </blockquote>
 
-<h1 id="０セットアップ">０．セットアップ</h1>
+<h1 id="セットアップ">セットアップ</h1>
 
 <p>Linuxを使っています。これを前提にしているので、ご注意ください。<br>
 Jekyllは、Rubyを使っているので、Rubyをインストールする必要です。
 OSのパッケージ管理ソフトでインストールすると、バージョンの互換性問題などで、時間が無駄になることが良くあるので、
 <code>rbenv</code>でRubyのバージョンを管理する。インストール手順は<a href="/web/Ruby-Jekyll-install.html">rbenvよりRubyとJekyllのインストール（Linux）</a>を参照</p>
 
-<h1 id="１サイトを作る">１．サイトを作る</h1>
+<h1 id="サイトを作る">サイトを作る</h1>
 
 <h2 id="概要">概要</h2>
 
@@ -224,15 +408,23 @@ shell:~/jekyll-step-by-step$ vi index.html
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>サーバー起動させる：</p>
-<pre><code class="language-bash line-numbers">shell:~/jekyll-step-by-step$ jekyll server
+
+<h2 id="動作確認">動作確認</h2>
+
+<ol>
+  <li>サーバー起動させる：
+    <pre><code class="language-bash line-numbers"> shell:~/jekyll-step-by-step$ jekyll server
 </code></pre>
+  </li>
+  <li>ブラウザで<code>http://localhost:4000/</code>をアクセスして結果確認</li>
+  <li>出力結果ファイルは、<code>_site</code>ディレクトリにあるので、ファイルの内容を確認もできる</li>
+</ol>
 
 <h2 id="ソースコード">ソースコード</h2>
 
 <p><a href="https://github.com/libmuy/jekyll-step-by-step/blob/58f36217f44d4e656a448465d4b09bea18cff5a7/index.html">githubページ</a>をご参考ください。</p>
 
-<h1 id="２liquid">２．Liquid</h1>
+<h1 id="liquid">Liquid</h1>
 
 <h2 id="概要-1">概要</h2>
 
@@ -277,8 +469,10 @@ shell:~/jekyll-step-by-step$ vi index.html
 <p>上記の出力：<code>These red shoes are awesome.</code>である<br>
 変数<code>size</code>の値を50以下例えば<code>10</code>にすると、出力が<code>These red shoes are too small.</code>になる</p>
 
-<p>注意：Liquid処理を有効するには、Jekyllに通知する必要で、ページの先頭にfront matterを追加する必要があります。
-下記をファイル先頭に記載</p>
+<p class="info"><strong>front matterの追加</strong><br>
+Liquid処理を有効するには、Jekyllに通知する必要で、ページの先頭にfront matterを追加する必要があります。</p>
+
+<p>下記をファイル先頭に記載</p>
 <pre><code class="language-liquid line-numbers">---
 # front matter tells Jekyll to process Liquid
 ---
@@ -288,7 +482,7 @@ shell:~/jekyll-step-by-step$ vi index.html
 
 <p><a href="https://github.com/libmuy/jekyll-step-by-step/blob/fe0fe9ae43567702e7bd67f8b231bfa816735c1b/index.html">githubページ</a>をご参考ください。</p>
 
-<h1 id="３front-matter">３．Front Matter</h1>
+<h1 id="front-matter">Front Matter</h1>
 
 <h2 id="概要-2">概要</h2>
 
@@ -345,11 +539,128 @@ data:
 
 <p><a href="https://github.com/libmuy/jekyll-step-by-step/blob/06064dff19f62878691c57519224efa766bb2d52/index.html">githubページ</a>をご参考ください。</p>
 
-<h1 id="参考">参考</h1>
+<h1 id="レイアウト">レイアウト</h1>
+
+<h2 id="概要-3">概要</h2>
+
+<p>レイアウトの概要をまとめる</p>
+<ul>
+  <li>JekyllのWebサイトに表示するデータは、通常はMarkdownファイルで記載する</li>
+  <li>Markdownをどうやって表示するかの（見た目）を定義するのはレイアウト</li>
+  <li>レイアウトは、HTMLにLiquid文を組み込んで作成する</li>
+  <li>Markdownファイルの<a href="%22#%EF%BC%93front-matter%22">front matter</a>にレイアウトを指定する</li>
+</ul>
+
+<h2 id="実例-3">実例</h2>
+
+<p>Markdownファイルを<code>_posts</code>ディレクトリーに、レイアウトファイルは、<code>_layouts</code>ディレクトリーに格納するのが一般的である。</p>
+
+<h6 id="markdown">Markdown</h6>
+
+<p>下記はMarkdownファイルの<code>_posts/2021-10-10-my-post.md</code>：</p>
+<pre><code class="language-liquid line-numbers">---
+title: "素晴らしいポスト"
+layout: default
+---
+
+# サブタイトル１
+
+ここは一段落の文章である。
+
+# サブタイトル２
+
+ここは一段落の文章である。
+</code></pre>
+<ul>
+  <li>ファイル名の構成について
+    <ul>
+      <li>日付の部分は、<code>page.date</code>で参照できる</li>
+      <li>日付の後の部分は、<code>page.title</code>で参照できるが、front matterに<code>title</code>を定義することで、上書きできる</li>
+    </ul>
+  </li>
+  <li>front matterに定義してある内容
+    <ul>
+      <li>
+<code>layout: default</code>は、このページのレイアウトが<code>default.html</code>であることをJekyllに指示している</li>
+      <li>
+<code>title</code>は、ページのタイトルを定義する。<code>page.title</code>で参照できる</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="レイアウト-1">レイアウト</h6>
+
+<p>下記はレイアウトのHTMLファイルの<code>_layouts/default.html</code>：</p>
+<pre><code class="language-liquid line-numbers">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;{{page.title}}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;＝＝＝ ☆{{page.title}}☆ ＝＝＝&lt;/h1&gt;
+
+    {{content}}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ul>
+  <li>
+<code>page.title</code>は、Markdownファイルのfront matterに定義してある<code>title</code>の内容</li>
+  <li>
+<code>content</code>は、特殊変数で、MarkdownファイルをHTMLに変換した結果である。</li>
+</ul>
+
+<h6 id="出力">出力</h6>
+
+<p>出力ファイルパスは<code>_site/2021/10/10/my-post.html</code>になる。
+例の出力は下記の通り：</p>
+<pre><code class="language-html line-numbers">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;素晴らしいポスト&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;＝＝＝ ☆素晴らしいポスト☆ ＝＝＝&lt;/h1&gt;
+
+    &lt;h1 id="サブタイトル１"&gt;サブタイトル１&lt;/h1&gt;
+
+&lt;p&gt;ここは一段落の文章である。&lt;/p&gt;
+
+&lt;h1 id="サブタイトル２"&gt;サブタイトル２&lt;/h1&gt;
+
+&lt;p&gt;ここは一段落の文章である。&lt;/p&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="ソースコード-3">ソースコード</h2>
+
+<p><a href="https://github.com/libmuy/jekyll-step-by-step/blob/0fe23800fc97e9ef0b69c98b99a6f47eef2050d3/index.html">githubページ</a>をご参考ください。</p>
+
+<h1 id="include">include</h1>
+
+<p><code>include</code>タグは、<code>_includes</code>フォルダの他のファイルを入れ込む事を可能にします。</p>
+
+<pre><code class="language-liquid line-numbers">{% include footer.html %}
+</code></pre>
+<p>Jekyllはソースディレクトリにある<code>_includes</code>ディレクトリのファイル（この場合は<code>footer.html</code>）を探し、コンテンツに挿入します。</p>
+
+<h1 id="参考資料">参考資料</h1>
 
 <ul>
   <li><a href="http://jekyllrb-ja.github.io/docs/step-by-step/01-setup/">公式サイトのStep by Step チュートリアル</a></li>
   <li><a href="https://shopify.github.io/liquid/">official Liquid Documentation</a></li>
+  <li><a href="http://jekyllrb-ja.github.io/docs/variables/">Jekyllの変数</a></li>
+  <li><a href="http://jekyllrb-ja.github.io/docs/structure/">Jekyllのディレクトリー構成</a></li>
+  <li><a href="http://jekyllrb-ja.github.io/docs/liquid/filters/">JekyllのLiquidフィルター</a></li>
+  <li><a href="http://jekyllrb-ja.github.io/docs/liquid/tags/">JekyllのLiquidタグ</a></li>
 </ul>
 
                     </div>
@@ -397,15 +708,6 @@ data:
         </div>
         
 
-        
-        
-        
-
-
-        <div class="category-lv1 ">
-            <a href="/category/devtips">devtips(1)</a>
-        </div>
-        
         
         
         
@@ -490,13 +792,17 @@ data:
 </div>
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
-    <script type="text/javascript" src="/assets/main.js"></script> <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <script type="text/javascript" src="/assets/main.js"></script>
+    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
             <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span> <span itemprop="copyrightHolder name">Libmuy</span> All Rights Reserved.</p>
         </div>
     </footer>
 </div>
+
+
+    
 </body>
 
 </html>
