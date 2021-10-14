@@ -3,16 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PSJJQ78');</script>
-    <!-- End Google Tag Manager -->
+    
     <meta charset="utf-8">
     
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
@@ -30,21 +21,23 @@
 <meta property="og:title" content="U-Bootからカーネルを起動する方法">
 <meta name="author" content="Libmuy">
 <meta property="og:locale" content="ja_JP">
-<meta name="description" content="U-Bootがカーネルを起動する方法がいくつあります。">
-<meta property="og:description" content="U-Bootがカーネルを起動する方法がいくつあります。">
+<meta name="description" content="U-Bootがカーネルを起動する方法がいくつあります。 起動方法を環境変数bootcmdに保存しておくと、次回から、自動的に設定した方法から起動する U-Bootのautoboot機能を利用している。">
+<meta property="og:description" content="U-Bootがカーネルを起動する方法がいくつあります。 起動方法を環境変数bootcmdに保存しておくと、次回から、自動的に設定した方法から起動する U-Bootのautoboot機能を利用している。">
 <link rel="canonical" href="https://libmuy.github.io/kernel/u-boot.html">
 <meta property="og:url" content="https://libmuy.github.io/kernel/u-boot.html">
 <meta property="og:site_name" content="Libmuy’s Blog">
+<meta property="og:image" content="https://libmuy.github.io/assets/images/U-Boot.png">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-10-05T00:00:00+09:00">
 <meta name="twitter:card" content="summary">
+<meta property="twitter:image" content="https://libmuy.github.io/assets/images/U-Boot.png">
 <meta property="twitter:title" content="U-Bootからカーネルを起動する方法">
 <meta name="twitter:site" content="@libmuy">
 <meta name="twitter:creator" content="@Libmuy">
 <meta property="fb:admins" content="libmuy">
 <meta property="article:publisher" content="libmuy">
 <script type="application/ld+json">
-{"description":"U-Bootがカーネルを起動する方法がいくつあります。","url":"https://libmuy.github.io/kernel/u-boot.html","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"U-Bootからカーネルを起動する方法","dateModified":"2021-10-05T00:00:00+09:00","datePublished":"2021-10-05T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/kernel/u-boot.html"},"author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"datePublished":"2021-10-05T00:00:00+09:00","description":"U-Bootがカーネルを起動する方法がいくつあります。 起動方法を環境変数bootcmdに保存しておくと、次回から、自動的に設定した方法から起動する U-Bootのautoboot機能を利用している。","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/kernel/u-boot.html"},"url":"https://libmuy.github.io/kernel/u-boot.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"https://libmuy.github.io/assets/images/U-Boot.png","headline":"U-Bootからカーネルを起動する方法","dateModified":"2021-10-05T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -52,27 +45,21 @@
 
 <body class="index">
     
+
     <nav>
-        <a href="/">
-            <img src="/assets/images/logo.svg">
-            <span>LIBMUY</span>
-        </a>
-        <!-- 
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul> -->
+    <a href="/">
+        <img src="/assets/images/logo.svg">
+        <span>LIBMUY</span>
+    </a>
 
+    <div class="menu">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
 
-        <div class="menu">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-        </div>
+</nav>
 
-    </nav>
     <div class="container">
         <header id="header">
     <div id="head-in">
@@ -256,21 +243,16 @@
 </script>
         </div>
 </header>
-        <!-- <link rel="stylesheet" href="/assets/css/post.css"> -->
+        <link rel="stylesheet" href="/assets/css/post.css">
 
 <div id="primary" class="clearfix">
     <div id="left-side">
     <div id="side-fixed">
         <div class="title">目次</div>
         <ol id="" class="toc_list">
-<li class=" toc-h1">
-<a href="#%E8%B5%B7%E5%8B%95%E6%96%B9%E6%B3%95">起動方法</a>
-<ol>
-<li class=" toc-h3"><a href="#nfs">NFS</a></li>
-<li class=" toc-h3"><a href="#flash">Flash</a></li>
-<li class=" toc-h3"><a href="#tftp">TFTP</a></li>
-</ol>
-</li>
+<li class=" toc-h3"><a href="#flashkernel">Flash(Kernel)</a></li>
+<li class=" toc-h3"><a href="#tftpkernel">TFTP(Kernel)</a></li>
+<li class=" toc-h3"><a href="#nfsrootfs">NFS(rootfs)</a></li>
 <li class=" toc-h1">
 <a href="#%E3%81%9D%E3%81%AE%E4%BB%96">その他</a>
 <ol>
@@ -298,24 +280,23 @@
                             </span>
                             <i class="fas fa-redo-alt"></i>
                             <span class="date">
-                                <meta itemprop="dateModified" content="2021-10-13T15:55:25+09:00">
-                                13 Oct 2021
+                                <meta itemprop="dateModified" content="2021-10-15T00:38:46+09:00">
+                                15 Oct 2021
                             </span>
                         </p>
 
+                        
+                        <div class="cover">
+                            <img src="/assets/images/U-Boot.png">
+                        </div>
                         
 
                         <div id="toc_container">
 <span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
                             <ol id="" class="toc_list">
-<li class=" toc-h1">
-<a href="#%E8%B5%B7%E5%8B%95%E6%96%B9%E6%B3%95">起動方法</a>
-<ol>
-<li class=" toc-h3"><a href="#nfs">NFS</a></li>
-<li class=" toc-h3"><a href="#flash">Flash</a></li>
-<li class=" toc-h3"><a href="#tftp">TFTP</a></li>
-</ol>
-</li>
+<li class=" toc-h3"><a href="#flashkernel">Flash(Kernel)</a></li>
+<li class=" toc-h3"><a href="#tftpkernel">TFTP(Kernel)</a></li>
+<li class=" toc-h3"><a href="#nfsrootfs">NFS(rootfs)</a></li>
 <li class=" toc-h1">
 <a href="#%E3%81%9D%E3%81%AE%E4%BB%96">その他</a>
 <ol>
@@ -325,26 +306,45 @@
 </ol>
                         </div>
 
-                        <p>U-Bootがカーネルを起動する方法がいくつあります。</p>
+                        <p>U-Bootがカーネルを起動する方法がいくつあります。<br>
+起動方法を環境変数<code>bootcmd</code>に保存しておくと、次回から、自動的に設定した方法から起動する<br>
+U-Bootの<code>autoboot</code>機能を利用している。</p>
 
-<h1 id="起動方法">起動方法</h1>
+<p>使っているコマンド：</p>
+<ul>
+  <li>
+<code>setenv</code>：環境変数を設定する</li>
+  <li>
+<code>saveenv</code>：現在設定した環境変数をFlashに保存</li>
+</ul>
 
-<h3 id="nfs">NFS</h3>
+<h3 id="flashkernel">Flash(Kernel)</h3>
 
-<pre><code class="language-bash line-numbers">setenv bootargs root=/dev/nfs rw nfsroot=192.168.137.2:/home/bjn/wk/nfsboot ip=192.168.137.3:192.168.137.2:192.168.137.2:255.255.255.0:nxp_board:eth0:off console=ttyS0,115200 earlycon=uart8250,mmio,0x21c0500
-setenv bootcmd tftp 96000000  kernel-fsl-ls1012a-frdm.itb\; pfe stop \; bootm 96000000:kernel@1 - 96000000:fdt@1
+<p>Flashから<strong>Kernel</strong>をロードして起動するが、適切な<strong>rootfs</strong>を使うため、bootargsのrootを指定する必要</p>
+
+<pre><code class="language-bash line-numbers">setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $kernel_size \&amp;\&amp; bootm $kernel_load
 </code></pre>
 
-<h3 id="flash">Flash</h3>
-<pre><code class="language-bash line-numbers">setenv bootargs console=ttyS0,115200 root=/dev/ram0 earlycon=uart8250,mmio,0x21c0500
-setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $kernel_size \&amp;\&amp; bootm $kernel_load
-</code></pre>
+<h3 id="tftpkernel">TFTP(Kernel)</h3>
 
-<h3 id="tftp">TFTP</h3>
+<p>TFTPから<strong>Kernel</strong>をロードして起動するが、適切な<strong>rootfs</strong>を使うため、bootargsのrootを指定する必要</p>
+
 <pre><code class="language-bash line-numbers">setenv bootcmd tftp 0x96000000 kernel-fsl-ls1012a-frdm.itb \; pfe stop \; bootm 0x96000000
 </code></pre>
 
-<pre><code class="language-bash line-numbers">tftp 0x96000000 kernel-fsl-ls1012a-frdm.itb ; pfe stop; bootm 0x96000000
+<h3 id="nfsrootfs">NFS(rootfs)</h3>
+
+<p>rootfsをnfsから起動するには、Kernelのcommand-line paramを設定する必要です
+事前にrootfsのNFSサーバーを用意する必要、下記の例では、<code>192.168.137.2:/home/libmuy/wk/nfsboot</code>になる
+参考：</p>
+<ul>
+  <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html">Kernel command-line parameters</a></li>
+  <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/nfs/nfsroot.html">Kernel command-line parametersのNFSROOT関連</a></li>
+</ul>
+
+<pre><code class="language-bash line-numbers">setenv bootargs root=/dev/nfs rw nfsroot=192.168.137.2:/home/libmuy/wk/nfsboot ip=192.168.137.3:192.168.137.2:192.168.137.2:255.255.255.0:nxp_board:eth0:off console=ttyS0,115200 earlycon=uart8250,mmio,0x21c0500
+setenv bootcmd tftp 96000000  kernel-fsl-ls1012a-frdm.itb\; pfe stop \; bootm 96000000:kernel@1 - 96000000:fdt@1
+saveenv
 </code></pre>
 
 <h1 id="その他">その他</h1>
@@ -401,7 +401,6 @@ setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $ker
             </div>
         </article>
     </main>
-    
     <div id="right-side">
     <div id="side-fixed">
         <div class="title ">
@@ -411,79 +410,83 @@ setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $ker
 
         
         
-        
+
+<div class="category-lv1 ">
+    <a href="/category/linux">Linux(4)</a>
+</div>
 
 
-        <div class="category-lv1 ">
-            <a href="/category/linux">Linux(4)</a>
-        </div>
-        
-        
-        
-        
-
-
-        <div class="category-lv1 current">
-            <a href="/category/kernel">カーネル(5)</a>
-        </div>
-        
         
         
         
 
-
-        <div class="category-lv1 ">
-            <a href="/category/network">ネットワーク(2)</a>
-        </div>
-        
-        
-        
-        
+<div class="category-lv1 current">
+    <a href="/category/kernel">カーネル(5)</a>
+</div>
 
 
-        <div class="category-lv1 ">
-            <a href="/category/web">Web関連(2)</a>
-        </div>
-        
         
         
         
 
+<div class="category-lv1 ">
+    <a href="/category/network">ネットワーク(2)</a>
+</div>
 
-        <div class="category-lv1 ">
-            <a href="/category/others">その他(9)</a>
-        </div>
-        
-        
-        
 
-        <div class="category-lv2 ">
-            <a href="/category/others/windows">Windows(1)</a>
-        </div>
-        
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/tools">ツール(2)</a>
-        </div>
-        
+<div class="category-lv1 ">
+    <a href="/category/web">Web関連(3)</a>
+</div>
+
+
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/devtips">開発Tips(4)</a>
-        </div>
+<div class="category-lv1 ">
+    <a href="/category/others">その他(9)</a>
+</div>
+
+
         
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/windows">Windows(1)</a>
+</div>
+
+
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/bash">シェル(2)</a>
-        </div>
+<div class="category-lv2 ">
+    <a href="/category/others/tools">ツール(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/devtips">開発Tips(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/bash">シェル(2)</a>
+</div>
+
+
         
         
         
@@ -494,6 +497,7 @@ setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $ker
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
     <script type="text/javascript" src="/assets/main.js"></script>
+
     <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
@@ -501,9 +505,6 @@ setenv bootcmd pfe stop\; sf probe 0:0\; sf read $kernel_load $kernel_start $ker
         </div>
     </footer>
 </div>
-
-
-    
 </body>
 
 </html>

@@ -2,16 +2,7 @@
 <html>
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PSJJQ78');</script>
-    <!-- End Google Tag Manager -->
+    
     <meta charset="utf-8">
     
     <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
@@ -43,7 +34,7 @@
 <meta property="fb:admins" content="libmuy" />
 <meta property="article:publisher" content="libmuy" />
 <script type="application/ld+json">
-{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/page2/","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Libmuy’s Blog","author":{"@type":"Person","name":"Libmuy"},"@context":"https://schema.org"}</script>
+{"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/page2/","@type":"WebPage","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Libmuy’s Blog","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -51,27 +42,21 @@
 
 <body class="index">
     
+
     <nav>
-        <a href="/">
-            <img src="/assets/images/logo.svg">
-            <span>LIBMUY</span>
-        </a>
-        <!-- 
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul> -->
+    <a href="/">
+        <img src="/assets/images/logo.svg">
+        <span>LIBMUY</span>
+    </a>
 
+    <div class="menu">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
 
-        <div class="menu">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-        </div>
+</nav>
 
-    </nav>
     <div class="container">
         <header id="header">
     <div id="head-in">
@@ -258,11 +243,90 @@
 </header>
         <div id="primary" class="clearfix">
     <main id="main">
-        
         <div id="section">
     <div id="list" class="ngrid">
 
         
+        
+
+        <div class="toc grid clearfix">
+            <section>
+                <h2 class="entry-title" itemprop="headline name"><a href="/others/bash/bash-argument.html" class="entry-link"
+                        itemprop="url">Bashの引数</a></h2>
+                <p class="meta">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="date">
+                        <time class="entry-date updated" datetime="2021-10-07T00:00:00+09:00"
+                            itemprop="datePublished">
+                            07 Oct 2021
+                        </time>
+                    </span>
+                    <i class="fas fa-redo-alt"></i>
+                    <span class="date">
+                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
+                        09 Oct 2021
+                    </span>
+                    
+                    
+                    
+                    
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder"></i>
+    <a href="/category/others/">その他</a>
+    <i class="arrow">&gt;</i>
+    
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/others/bash/">シェル</a>
+    
+    
+</span>
+                    <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/bash/">bash</a>
+    </span>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/shell/">shell</a>
+    
+    
+</span>
+                </p>
+                <figure class="term">
+                    <a href="/others/bash/bash-argument.html" aria-hidden="true">
+                        
+                        
+                        <img width="150" height="150" src="/assets/images/bash.png">
+                    </a>
+                </figure>
+                <div class="excerpt" itemprop="description">
+                    <div class="exsp">
+                        <p><p>Bashの関数やスクリプト自体の引数について</p>
+</p>
+                    </div>
+                </div>
+                <p class="read-more">
+                    <a href="/others/bash/bash-argument.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
+                </p>
+            </section>
+        </div>
+
         
 
         <div class="toc grid clearfix">
@@ -356,8 +420,8 @@
                     </span>
                     <i class="fas fa-redo-alt"></i>
                     <span class="date">
-                        <meta itemprop="dateModified" content="2021-10-13T15:55:25+09:00">
-                        13 Oct 2021
+                        <meta itemprop="dateModified" content="2021-10-15T00:38:46+09:00">
+                        15 Oct 2021
                     </span>
                     
                     
@@ -402,12 +466,14 @@
                     <a href="/kernel/u-boot.html" aria-hidden="true">
                         
                         
-                        <img width="150" height="150" src="/assets/images/noimage.png">
+                        <img width="150" height="150" src="/assets/images/U-Boot.png">
                     </a>
                 </figure>
                 <div class="excerpt" itemprop="description">
                     <div class="exsp">
-                        <p><p>U-Bootがカーネルを起動する方法がいくつあります。</p>
+                        <p><p>U-Bootがカーネルを起動する方法がいくつあります。<br />
+起動方法を環境変数<code>bootcmd</code>に保存しておくと、次回から、自動的に設定した方法から起動する<br />
+U-Bootの<code>autoboot</code>機能を利用している。</p>
 </p>
                     </div>
                 </div>
@@ -492,74 +558,6 @@ OSのパッケージ管理ソフトでインストールすると、いろいろ
                 </div>
                 <p class="read-more">
                     <a href="/web/Ruby-Jekyll-install.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
-                </p>
-            </section>
-        </div>
-
-        
-
-        <div class="toc grid clearfix">
-            <section>
-                <h2 class="entry-title" itemprop="headline name"><a href="/linux/ubuntu-sleep-wakeup-mouse.html" class="entry-link"
-                        itemprop="url">Ubuntu20.04：スリップから復帰時、マウスが使えない時の対処</a></h2>
-                <p class="meta">
-                    <i class="far fa-calendar-alt"></i>
-                    <span class="date">
-                        <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00"
-                            itemprop="datePublished">
-                            25 Jun 2020
-                        </time>
-                    </span>
-                    <i class="fas fa-redo-alt"></i>
-                    <span class="date">
-                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
-                        09 Oct 2021
-                    </span>
-                    
-                    
-                    
-                    
-
-
-
-<span class="category items" itemprop="keywords">
-    
-    
-    
-    
-    <i class="fas fa-folder-open"></i>
-    <a href="/category/linux/">Linux</a>
-    
-    
-</span>
-                    <span class="tags items" itemprop="keywords">
-
-    
-    
-    <span class="first-item">
-        <i class="fas fa-tags"></i>
-        <a href="/tag/ubuntu/">ubuntu</a>
-    </span>
-    
-    
-</span>
-                </p>
-                <figure class="term">
-                    <a href="/linux/ubuntu-sleep-wakeup-mouse.html" aria-hidden="true">
-                        
-                        
-                        <img width="150" height="150" src="/assets/images/ubuntu.jpg">
-                    </a>
-                </figure>
-                <div class="excerpt" itemprop="description">
-                    <div class="exsp">
-                        <p><p>スリープから復帰時、マウスが動作しなかった。<br />
-原因は、マウスのドライバがスリープ対応していないようだ。</p>
-</p>
-                    </div>
-                </div>
-                <p class="read-more">
-                    <a href="/linux/ubuntu-sleep-wakeup-mouse.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
                 </p>
             </section>
         </div>
@@ -708,7 +706,6 @@ OSのパッケージ管理ソフトでインストールすると、いろいろ
 
 
     </main>
-    
     <div id="right-side">
     <div id="side-fixed">
         <div class="title current">
@@ -718,79 +715,83 @@ OSのパッケージ管理ソフトでインストールすると、いろいろ
 
         
         
-        
+
+<div class="category-lv1 ">
+    <a href="/category/linux">Linux(4)</a>
+</div>
 
 
-        <div class="category-lv1 ">
-            <a href="/category/linux">Linux(4)</a>
-        </div>
-        
-        
-        
-        
-
-
-        <div class="category-lv1 ">
-            <a href="/category/kernel">カーネル(5)</a>
-        </div>
-        
         
         
         
 
-
-        <div class="category-lv1 ">
-            <a href="/category/network">ネットワーク(2)</a>
-        </div>
-        
-        
-        
-        
+<div class="category-lv1 ">
+    <a href="/category/kernel">カーネル(5)</a>
+</div>
 
 
-        <div class="category-lv1 ">
-            <a href="/category/web">Web関連(2)</a>
-        </div>
-        
         
         
         
 
+<div class="category-lv1 ">
+    <a href="/category/network">ネットワーク(2)</a>
+</div>
 
-        <div class="category-lv1 ">
-            <a href="/category/others">その他(9)</a>
-        </div>
-        
-        
-        
 
-        <div class="category-lv2 ">
-            <a href="/category/others/windows">Windows(1)</a>
-        </div>
-        
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/tools">ツール(2)</a>
-        </div>
-        
+<div class="category-lv1 ">
+    <a href="/category/web">Web関連(3)</a>
+</div>
+
+
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/devtips">開発Tips(4)</a>
-        </div>
+<div class="category-lv1 ">
+    <a href="/category/others">その他(9)</a>
+</div>
+
+
         
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/windows">Windows(1)</a>
+</div>
+
+
         
         
         
 
-        <div class="category-lv2 ">
-            <a href="/category/others/bash">シェル(2)</a>
-        </div>
+<div class="category-lv2 ">
+    <a href="/category/others/tools">ツール(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/devtips">開発Tips(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/bash">シェル(2)</a>
+</div>
+
+
         
         
         
@@ -801,6 +802,7 @@ OSのパッケージ管理ソフトでインストールすると、いろいろ
     </div>
     <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
     <script type="text/javascript" src="/assets/main.js"></script>
+
     <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
     <footer>
         <div id="copyright">
@@ -809,9 +811,6 @@ OSのパッケージ管理ソフトでインストールすると、いろいろ
         </div>
     </footer>
 </div>
-
-
-    
 </body>
 
 </html>

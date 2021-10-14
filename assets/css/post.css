@@ -1,0 +1,1 @@
+#side-fixed>div.current[class*="category-lv"]>a::before{content:"";border-color:transparent transparent transparent #444;border-style:solid;border-width:10px;position:absolute;left:-20px}
