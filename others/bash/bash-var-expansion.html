@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta charset="utf-8">
+    
+    <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
+    <link rel="icon" href="/assets/images/logo_black_small.png">
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script src="/assets/prism/prism.js"></script>
+
+    <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Bash変数展開 | Libmuy’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Bash変数展開">
+<meta name="author" content="Libmuy">
+<meta property="og:locale" content="ja_JP">
+<meta name="description" content="Bashの変数展開、上手に使えるようになると作業効率が上がる。 あまり馴染みがないので、よく調べて忘れてしまうので、一覧を列挙しておく">
+<meta property="og:description" content="Bashの変数展開、上手に使えるようになると作業効率が上がる。 あまり馴染みがないので、よく調べて忘れてしまうので、一覧を列挙しておく">
+<link rel="canonical" href="https://libmuy.github.io/others/bash/bash-var-expansion.html">
+<meta property="og:url" content="https://libmuy.github.io/others/bash/bash-var-expansion.html">
+<meta property="og:site_name" content="Libmuy’s Blog">
+<meta property="og:image" content="https://libmuy.github.io/assets/images/bash.png">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-10-15T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:image" content="https://libmuy.github.io/assets/images/bash.png">
+<meta property="twitter:title" content="Bash変数展開">
+<meta name="twitter:site" content="@libmuy">
+<meta name="twitter:creator" content="@Libmuy">
+<meta property="fb:admins" content="libmuy">
+<meta property="article:publisher" content="libmuy">
+<script type="application/ld+json">
+{"datePublished":"2021-10-15T00:00:00+09:00","description":"Bashの変数展開、上手に使えるようになると作業効率が上がる。 あまり馴染みがないので、よく調べて忘れてしまうので、一覧を列挙しておく","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/others/bash/bash-var-expansion.html"},"url":"https://libmuy.github.io/others/bash/bash-var-expansion.html","@type":"BlogPosting","author":{"@type":"Person","name":"Libmuy"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"image":"https://libmuy.github.io/assets/images/bash.png","headline":"Bash変数展開","dateModified":"2021-10-15T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+<body class="index">
+    
+
+    <nav>
+    <a href="/">
+        <img src="/assets/images/logo.svg">
+        <span>LIBMUY</span>
+    </a>
+
+    <div class="menu">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+
+</nav>
+
+    <div class="container">
+        <header id="header">
+    <div id="head-in">
+        <div id="sitename">
+            <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150" class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
+                <span itemprop="name about">LIBMUY</span>
+            </a>
+        </div>
+        </div>
+        <div class="search-container">
+            <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
+    <div role="search" class="search-wrapper1">
+        <span class="search-wrapper2">
+            <input type="search" placeholder="Search the docs" required="required" class="search-input">
+            <span class="ds-dropdown-menu" role="listbox" id="search-suggestion-container">
+            </span>
+        </span>
+        <button type="submit" title="Submit your search query." class="search-submit-button">
+            <svg width="12" height="12" role="img" aria-label="Search">
+                <use xlink:href="/assets/images/search-icon.svg#search"></use>
+            </svg>
+        </button>
+        <button id="clear-btn" type="reset" title="Clear the search query." class="search-reset-button">
+            <svg width="12" height="12" role="img" aria-label="Reset">
+                <use xlink:href="/assets/images/search-icon.svg#reset"></use>
+            </svg>
+        </button>
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<script>
+    const search = instantsearch({
+        appId: 'BYSJ0BMMUA',
+        apiKey: '532e9a5e639b4c7b0de3ca2e25df117a',
+        indexName: 'blog'
+    });
+
+    const hitTemplate = function (hit) {
+        console.log("hitTemplate: hit:" + hit);
+        /* no display when no inputing */
+        if (hit._highlightResult == null || hit._highlightResult.content.matchedWords.length <= 0) {
+            return "";
+        }
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+        let url = hit.url;
+        if (!(hit.anchor == null)) {
+            url += `#${hit.anchor}`;
+        }
+        const title = hit._highlightResult.title.value;
+
+        let categories = '';
+        if (hit.category_name) {
+            categories = hit.category_name.split("/").map(match => {
+                return `<span class="post-breadcrumb">${match}</span>`
+            }).join(' > ')
+        }
+        const content = hit._highlightResult.content.value;
+
+        return `
+  <div class="ds-suggestion" role="option">
+    <a class="search-suggestion search-suggestion-secondary" aria-label="Link to the result" href="${url}">
+        <div class="search-suggestion-wrapper">
+            <div class="search-suggestion-subcategory-column">
+                <span class="search-suggestion-subcategory-column-text">${categories}</span>
+            </div>
+            <div class="search-suggestion-content">
+                <div class="search-suggestion-title">
+                    ${date}<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+                    ${title}
+                </div>
+                <div class="search-suggestion-text">
+                    ${content}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>`;
+    }
+
+    // Create a render function
+    var suggestion = document.querySelector('#search-suggestion-container');
+    var clrBtn = document.querySelector('#clear-btn');
+    const renderSearchBox = (renderOptions, isFirstRender) => {
+        const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+        var removeSuggestionTimer;
+
+        console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
+        if (isFirstRender) {
+            var input = document.querySelector('.search-input');
+            input.addEventListener('input', event => {
+                refine(event.target.value);
+            });
+            input.addEventListener('focusout', (event) => {
+                removeSuggestionTimer = setTimeout(function () {
+                    suggestion.style.display = 'none';
+                }, 300);
+            });
+
+            suggestion.addEventListener('click', () => {
+                console.log("suggestion event:click");
+                clearTimeout(removeSuggestionTimer);
+            });
+            suggestion.addEventListener('contextmenu', () => {
+                console.log("suggestion event:right click");
+                clearTimeout(removeSuggestionTimer);
+            });
+
+            clrBtn.addEventListener('click', () => {
+                clear();
+            });
+
+        }
+        if (query.length > 0) {
+            suggestion.style.display = 'block';
+            clrBtn.style.display = 'block';
+        } else {
+            suggestion.style.display = 'none';
+            clrBtn.style.display = 'none';
+        }
+
+        document.querySelector('input').value = query;
+        document.querySelector('#clear-btn').hidden = !isSearchStalled;
+    };
+
+    // create custom widget
+    const customSearchBox = instantsearch.connectors.connectSearchBox(
+        renderSearchBox
+    );
+
+    // instantiate custom widget
+    search.addWidgets([
+        customSearchBox({
+            container: document.querySelector('.searchbox'),
+        })
+    ]);
+
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-suggestion-container',
+            templates: {
+                item: hitTemplate
+            },
+            cssClasses: {
+                root: 'ds-dataset',
+                emptyRoot: 'ds-dataset-empty',
+                list: 'ds-suggestions',
+                item: 'ds-suggestions',
+            }
+        })
+    );
+
+    search.on('render', () => {
+        console.log("rendered");
+        var dataset = suggestion.getElementsByClassName('ds-dataset');
+        if (dataset.length == 0) return;
+        dataset = dataset[0];
+        var logodiv = document.getElementById("search-logo");
+        if (!(logodiv == null)) return;
+
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(`
+        <div id="search-logo" class="ds-suggestions">
+            <svg width="12" height="12" role="img" aria-label="Logo">
+                <use xlink:href="/assets/images/search-icon.svg#logo"></use>
+            </svg>
+        </div>
+        `, "text/html")
+
+        logodiv = doc.getElementById("search-logo");
+        dataset.appendChild(logodiv);
+    });
+
+    search.start();
+</script>
+        </div>
+</header>
+        <link rel="stylesheet" href="/assets/css/post.css">
+
+<div id="primary" class="clearfix">
+    <div id="left-side">
+    <div id="side-fixed">
+        <div class="title">目次</div>
+        <ol id="" class="toc_list">
+<li class=" toc-h1"><a href="#parameter-%E9%80%9A%E5%B8%B8%E5%8F%82%E7%85%A7">${parameter}: 通常参照</a></li>
+<li class=" toc-h1"><a href="#parameter-word-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4%E4%BB%A3%E5%85%A5%E3%81%AA%E3%81%97">${parameter:-word}: デフォルト値(代入なし)</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4%E4%BB%A3%E5%85%A5%E3%81%82%E3%82%8A">${parameter:=word}: デフォルト値(代入あり)</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E6%9C%AA%E5%AE%9A%E7%BE%A9%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E5%87%BA%E5%8A%9B">${parameter:?word}: 未定義時のエラー出力</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E5%AE%9A%E7%BE%A9%E6%99%82%E3%81%AE%E4%BB%A3%E7%94%A8">${parameter:+word}: 定義時の代用</a></li>
+<li class=" toc-h1"><a href="#parameteroffsetlength-substring">${parameter:offset[:length]}: substring</a></li>
+<li class=" toc-h1"><a href="#prefixprefix-%E5%A4%89%E6%95%B0%E5%90%8D%E4%B8%80%E8%A6%A7">${!prefix*}/${!prefix@}: 変数名一覧</a></li>
+<li class=" toc-h1"><a href="#name-%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E3%82%AD%E3%83%BC%E5%90%8D%E4%B8%80%E8%A6%A7">${!name[*]}: 連想配列キー名一覧</a></li>
+<li class=" toc-h1"><a href="#parameter-%E6%96%87%E5%AD%97%E6%95%B0">${#parameter}: 文字数</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%89%8D%E6%96%B9%E4%B8%80%E8%87%B4%E5%89%8A%E9%99%A4">${parameter#pattern}: 前方一致削除</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E5%BE%8C%E6%96%B9%E4%B8%80%E8%87%B4%E9%99%A4%E5%8E%BB">${parameter%word}: 後方一致除去</a></li>
+<li class=" toc-h1"><a href="#parameterpatternstring-%E6%96%87%E5%AD%97%E5%88%97%E7%BD%AE%E6%8F%9B">${parameter/pattern/string}: 文字列置換</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%A4%A7%E6%96%87%E5%AD%97%E5%8C%96">${parameter^pattern}: 大文字化</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%B0%8F%E6%96%87%E5%AD%97%E5%8C%96">${parameter,pattern}: 小文字化</a></li>
+<li class=" toc-h1"><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">パターンマッチング</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ol>
+    </div>
+</div>
+<!--/#right-side-->
+    <main id="main">
+        <article>
+            <div id="core" class="grid">
+                <div itemprop="mainEntityOfPage" id="mainEntity" class="post post-109 type-post status-publish format-standard has-post-thumbnail hentry category-server tag-debian tag-linux tag-omv tag-openmediavault tag-server tag-wordpress ja">
+                    <div id="article-header">
+                        <h1 class="entry-title" itemprop="headline name">Bash変数展開</h1>
+                    </div>
+                    <div class="clearfix">
+                        <p class="meta">
+                            <i class="far fa-clock"></i>
+                            <span class="date published">
+                                <time class="entry-date updated" datetime="2021-10-15T00:00:00+09:00" itemprop="datePublished">
+                                    15 Oct 2021
+                                </time>
+                            </span>
+                            <i class="fas fa-redo-alt"></i>
+                            <span class="date">
+                                <meta itemprop="dateModified" content="2021-10-16T00:02:51+09:00">
+                                16 Oct 2021
+                            </span>
+                        </p>
+
+                        
+                        <div class="cover">
+                            <img src="/assets/images/bash.png">
+                        </div>
+                        
+
+                        <div id="toc_container">
+<span class="toc_title">Contents</span><input id="toc_toggle" type="checkbox" checked><label class="toc_toggle" for="toc_toggle"></label>
+                            <ol id="" class="toc_list">
+<li class=" toc-h1"><a href="#parameter-%E9%80%9A%E5%B8%B8%E5%8F%82%E7%85%A7">${parameter}: 通常参照</a></li>
+<li class=" toc-h1"><a href="#parameter-word-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4%E4%BB%A3%E5%85%A5%E3%81%AA%E3%81%97">${parameter:-word}: デフォルト値(代入なし)</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E5%80%A4%E4%BB%A3%E5%85%A5%E3%81%82%E3%82%8A">${parameter:=word}: デフォルト値(代入あり)</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E6%9C%AA%E5%AE%9A%E7%BE%A9%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E5%87%BA%E5%8A%9B">${parameter:?word}: 未定義時のエラー出力</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E5%AE%9A%E7%BE%A9%E6%99%82%E3%81%AE%E4%BB%A3%E7%94%A8">${parameter:+word}: 定義時の代用</a></li>
+<li class=" toc-h1"><a href="#parameteroffsetlength-substring">${parameter:offset[:length]}: substring</a></li>
+<li class=" toc-h1"><a href="#prefixprefix-%E5%A4%89%E6%95%B0%E5%90%8D%E4%B8%80%E8%A6%A7">${!prefix*}/${!prefix@}: 変数名一覧</a></li>
+<li class=" toc-h1"><a href="#name-%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E3%82%AD%E3%83%BC%E5%90%8D%E4%B8%80%E8%A6%A7">${!name[*]}: 連想配列キー名一覧</a></li>
+<li class=" toc-h1"><a href="#parameter-%E6%96%87%E5%AD%97%E6%95%B0">${#parameter}: 文字数</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%89%8D%E6%96%B9%E4%B8%80%E8%87%B4%E5%89%8A%E9%99%A4">${parameter#pattern}: 前方一致削除</a></li>
+<li class=" toc-h1"><a href="#parameterword-%E5%BE%8C%E6%96%B9%E4%B8%80%E8%87%B4%E9%99%A4%E5%8E%BB">${parameter%word}: 後方一致除去</a></li>
+<li class=" toc-h1"><a href="#parameterpatternstring-%E6%96%87%E5%AD%97%E5%88%97%E7%BD%AE%E6%8F%9B">${parameter/pattern/string}: 文字列置換</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%A4%A7%E6%96%87%E5%AD%97%E5%8C%96">${parameter^pattern}: 大文字化</a></li>
+<li class=" toc-h1"><a href="#parameterpattern-%E5%B0%8F%E6%96%87%E5%AD%97%E5%8C%96">${parameter,pattern}: 小文字化</a></li>
+<li class=" toc-h1"><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">パターンマッチング</a></li>
+<li class=" toc-h1"><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ol>
+                        </div>
+
+                        <p>Bashの変数展開、上手に使えるようになると作業効率が上がる。
+あまり馴染みがないので、よく調べて忘れてしまうので、一覧を列挙しておく</p>
+
+<h1 id="parameter-通常参照">
+<code>${parameter}</code>: 通常参照</h1>
+<p>言うまでもなく、変数値を参照</p>
+
+<h1 id="parameter-word-デフォルト値代入なし">
+<code>${parameter:-word}</code>: デフォルト値(代入なし)</h1>
+<p><code>parameter</code> が 未定義（<code>unset</code> か <code>null</code>）の場合、<code>word</code> に展開する<br>
+そうではない場合、<code>parameter</code> に展開する</p>
+
+<p class="info"><strong>注意</strong><br>
+<code>:</code>がない形式（<code>${parameter-word}</code>）は、<code>unset</code>の場合のみ、<code>word</code>に展開する挙動になっているが、公式ドキュメントには記載がないので、使わないことにする</p>
+
+<h1 id="parameterword-デフォルト値代入あり">
+<code>${parameter:=word}</code>: デフォルト値(代入あり)</h1>
+<p><code>:-</code>のデフォルト値展開の挙動をした上で、<code>parameter</code> に <code>word</code> を代入する</p>
+
+<p class="info"><strong>注意</strong><br>
+<code>:</code>がない形式（<code>${parameter=word}</code>）は、<code>unset</code>の場合のみ、<code>word</code>に展開＆代入する挙動になっているが、公式ドキュメントには記載がないので、使わないことにする</p>
+
+<h1 id="parameterword-未定義時のエラー出力">
+<code>${parameter:?word}</code>: 未定義時のエラー出力</h1>
+<p><code>parameter</code> が 未定義（<code>unset</code> か <code>null</code>）の場合、<code>word</code> をエラーメッセージとして出力し、スクリプト終了する</p>
+<pre><code class="language-bash line-numbers"># 指定メッセージでエラーが出る
+$ unset hoge
+$ echo ${hoge:?"hoge-undefined"}
+-bash: hoge: hoge-undefined
+
+# エラー扱いにもなる
+$ echo ${?}
+1
+
+# メッセージ指定がないとこうなる
+$ echo ${hoge:?}
+-bash: hoge: parameter null or not set
+</code></pre>
+
+<h1 id="parameterword-定義時の代用">
+<code>${parameter:+word}</code>: 定義時の代用</h1>
+<p><code>:=</code> と反対で、<code>parameter</code> が <strong>定義された</strong>（<code>unset</code> か <code>null</code>）の場合、<code>word</code> に展開かつ変数に代入する。
+そうではない場合、<code>空</code> に展開する</p>
+
+<p class="info"><strong>注意</strong><br>
+<code>:</code>がない形式（<code>${parameter+word}</code>）は、代入しないだが、公式ドキュメントには記載がないので、使わないことにする</p>
+
+<h1 id="parameteroffsetlength-substring">
+<code>${parameter:offset[:length]}</code>: substring</h1>
+
+<ul>
+  <li>
+<code>offset</code> から長さが<code>length</code> のサブ文字に展開</li>
+  <li>
+<code>offset</code>は、0からの位置</li>
+  <li>
+<code>length</code>を省略時、最後まで展開となる</li>
+  <li>
+<code>offset</code>がマイナス時、文字列の後ろからの位置になる。<strong><code>:</code>と<code>-</code>間1個以上の空白が必要</strong>
+</li>
+  <li>
+<code>length</code>がマイナス時、文字列の後ろからの位置になる（文字数ではない）</li>
+</ul>
+
+<pre><code class="language-bash line-numbers">$ string=01234567890abcdefgh
+$ echo ${string:7}
+7890abcdefgh
+$ echo ${string:7:0}
+
+$ echo ${string:7:2}
+78
+$ echo ${string:7:-2}
+7890abcdef
+$ echo ${string: -7}
+bcdefgh
+$ echo ${string: -7:0}
+
+$ echo ${string: -7:2}
+bc
+$ echo ${string: -7:-2}
+bcdef
+</code></pre>
+
+<h1 id="prefixprefix-変数名一覧">${!prefix*}/${!prefix@}: 変数名一覧</h1>
+<p>先方一致の変数名一覧を取得する</p>
+<pre><code class="language-bash line-numbers"># BASH_ で始まる変数名一覧
+$ echo ${!BASH_*}
+BASH_ALIASES BASH_ARGC BASH_ARGV BASH_CMDS BASH_COMMAND BASH_COMPLETION_COMPAT_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL BASH_VERSINFO BASH_VERSION
+
+# @ を使っても同じ動きになる
+$ echo ${!BASH_@}
+BASH_ALIASES BASH_ARGC BASH_ARGV BASH_CMDS BASH_COMMAND BASH_COMPLETION_COMPAT_DIR BASH_LINENO BASH_SOURCE BASH_SUBSHELL BASH_VERSINFO BASH_VERSION
+</code></pre>
+<p><code>*</code>を使う場合と<code>@</code>を使う場合の違いは、変数の<a href="/others/bash/bash-argument.html#%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84"><code>$@</code>と<code>$*</code>の違い</a>は同じである</p>
+
+<h1 id="name-連想配列キー名一覧">
+<code>${!name[*]}</code>: 連想配列キー名一覧</h1>
+
+<p>連想配列キー名一覧を取得</p>
+
+<pre><code class="language-bash line-numbers"># 連想配列を定義
+$ declare -A hash
+$ hash["hoge"]="hoge-value"
+$ hash["fuga"]="fuga-value"
+
+# キー名一覧が取れる
+$ echo ${!hash[*]}
+fuga hoge
+
+# やはり @ でも同じ動き
+$ echo ${!hash[@]}
+fuga hoge
+</code></pre>
+
+<h1 id="parameter-文字数">
+<code>${#parameter}</code>: 文字数</h1>
+
+<p>バイト数ではなく、文字数である</p>
+<pre><code class="language-bash line-numbers">$ v=日本語1
+$ echo ${#v}
+4
+</code></pre>
+
+<p>${#name[*]}: 配列の要素数</p>
+
+<pre><code class="language-bash line-numbers"># 2個入れる
+$ list=("hoge-value" "fuga-value")
+$ echo ${list[*]}
+hoge-value fuga-value
+$ echo ${#list[*]}
+2
+
+# 増やしてみる
+$ list+=("piyo-value")
+$ echo ${list[*]}
+hoge-value fuga-value piyo-value
+$ echo ${#list[*]}
+3
+
+# やはり @ でも同じ動き
+$ echo ${#list[@]}
+3
+</code></pre>
+
+<h1 id="parameterpattern-前方一致削除">
+<code>${parameter#pattern}</code>: 前方一致削除</h1>
+
+<p><code>pattern</code>と一致している部分を削除、これは便利よく使う
+使えるパターンは、<a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">パターンマッチング</a>を参照</p>
+
+<ul>
+  <li>
+<code>#</code>最短一致</li>
+  <li>
+<code>##</code>：最長一致</li>
+</ul>
+
+<h1 id="parameterword-後方一致除去">
+<code>${parameter%word}</code>: 後方一致除去</h1>
+
+<p>後ろからマッチング</p>
+<ul>
+  <li>
+<code>%</code>最短一致</li>
+  <li>
+<code>%</code>：最長一致</li>
+</ul>
+
+<h1 id="parameterpatternstring-文字列置換">
+<code>${parameter/pattern/string}</code>: 文字列置換</h1>
+
+<p>文字列の置き換え、<code>${parameter//pattern/string}</code>は、グローバル置き換え（マッチした文字列全部置き換え）
+使えるパターンは、<a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">パターンマッチング</a>を参照</p>
+
+<h1 id="parameterpattern-大文字化">
+<code>${parameter^pattern}</code>: 大文字化</h1>
+
+<p>使えるパターンは、<a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">パターンマッチング</a>を参照</p>
+<ul>
+  <li>
+<code>^</code>最短一致</li>
+  <li>
+<code>^^</code>：最長一致</li>
+</ul>
+
+<pre><code class="language-bash line-numbers">$ var=abcdefg
+# 最短一致
+$ echo ${var^[ab]}
+Abcdefg
+$ echo ${var^?}
+Abcdefg
+$ echo ${var^*}
+Abcdefg
+# パターン省略時は、"?"となる
+$ echo ${var^}
+Abcdefg
+
+# 最長一致
+$ echo ${var^^*}
+ABCDEFG
+$ echo ${var^^?}
+ABCDEFG
+$ echo ${var^^[acd]}
+AbCDefg
+# パターン省略時は、"?"となる
+$ echo ${var^^}
+ABCDEFG
+</code></pre>
+
+<h1 id="parameterpattern-小文字化">
+<code>${parameter,pattern}</code>: 小文字化</h1>
+
+<p><code>^</code>と似ている、大文字化の代わりに、小文字になる</p>
+
+<p class="info"><strong>注意</strong>
+<code>${parameter~pattern}</code>は、大小文字反転であるが、公式ドキュメントには記載がないので、使わないことにする</p>
+
+<h1 id="パターンマッチング">パターンマッチング</h1>
+
+<p>前後方一致削除・文字列の置き換えなどで、使うパターンマッチング。<br>
+正規表現よりシンプルだけど、ちょっと不便。。。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>パターン</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>*</code></td>
+      <td>空文字列を含め、任意文字列にマッチ</td>
+    </tr>
+    <tr>
+      <td><code>?</code></td>
+      <td>任意一文字にマッチ</td>
+    </tr>
+    <tr>
+      <td><code>[…]</code></td>
+      <td>
+<code>[</code>と<code>]</code>で囲まれた文字の任意一文字にマッチする。下記のような便利使い方もある。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>例）</p>
+<pre><code class="language-bash line-numbers">$ var=0123456789abcdefg
+
+# 最短一致のため、変わらない
+$ echo ${var#*}
+0123456789abcdefg
+
+# 最長一致のため、全部消える
+$ echo ${var##*}
+
+# 最長一致
+$ echo ${var#*de}
+fg
+
+
+# "-"で、文字範囲で定義できる
+$ echo ${var#[0-5][0-5][0-5][0-5]}
+456789abcdefg
+
+# 正規表現ではない
+$ echo ${var#[0-5]*}
+123456789abcdefg
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+  <li><a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">Bash - Shell Parameter Expansion</a></li>
+  <li><a href="https://www.gnu.org/software/bash/manual/html_node/Pattern-Matching.html">Bash - Pattern Matching</a></li>
+  <li><a href="https://qiita.com/t_nakayama0714/items/80b4c94de43643f4be51">【シェル芸人への道】Bashの変数展開と真摯に向き合う</a></li>
+</ul>
+
+                    </div>
+                    <div class="meta-box">
+                        <p class="meta meta-u">
+                            
+                            
+                            
+                            
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder"></i>
+    <a href="/category/others/">その他</a>
+    <i class="arrow">&gt;</i>
+    
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/others/bash/">シェル</a>
+    
+    
+</span>
+                            <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/expansion/">expansion</a>
+    </span>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/pattern/">pattern</a>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/bash/">bash</a>
+    
+    
+</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <div id="right-side">
+    <div id="side-fixed">
+        <div class="title ">
+            <a href="/">HOME</a>
+        </div>
+        
+
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/linux">Linux(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/kernel">カーネル(5)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/network">ネットワーク(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/web">Web関連(3)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/others">その他(10)</a>
+</div>
+
+
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/windows">Windows(1)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/tools">ツール(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/devtips">開発Tips(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 current">
+    <a href="/category/others/bash">シェル(3)</a>
+</div>
+
+
+        
+        
+        
+    </div>
+</div>
+<!--/#right-side-->
+</div>
+    </div>
+    <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
+    <script type="text/javascript" src="/assets/main.js"></script>
+
+    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <footer>
+        <div id="copyright">
+            <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span> <span itemprop="copyrightHolder name">Libmuy</span> All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+
+</html>
