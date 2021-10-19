@@ -18,6 +18,8 @@ function goToTopFunction() {
 // Menu bar click handler
 menu.addEventListener('click', function () {
     this.classList.toggle('toggle');
+    side.style.top = (window.pageYOffset + 51) + "px";
+    console.log("right side top: " + window.pageYOffset);
     side.classList.toggle('toggle');
 });
 
@@ -45,9 +47,6 @@ window.onscroll = function () {
 
 
 
-/**************************************************************************
- * add ancher links
-**************************************************************************/
 var anchorForId = function (id) {
     var anchor = document.createElement("a");
     anchor.className = "header-link";
@@ -82,3 +81,15 @@ document.onreadystatechange = function () {
 
 
 
+/**************************************************************************
+ * Archive tree view
+**************************************************************************/
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function () {
+        this.parentElement.querySelector(".nested").classList.toggle("open");
+        this.classList.toggle("open");
+    });
+}

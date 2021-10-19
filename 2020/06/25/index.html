@@ -1,25 +1,832 @@
-<h1>Archive of posts from June 25, 2020</h1>
+<!DOCTYPE html>
+<html>
 
-<ul class="posts">
+<head>
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <link rel="shortcut icon" href="/assets/images/logo_black_small.png">
+    <link rel="icon" href="/assets/images/logo_black_small.png">
+    <link rel="stylesheet" href="/assets/prism/prism.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-  <li>
-    <span class="post-date">Jun 25, 2020</span>
-    <a class="post-link" href="/others/devtips/ubuntu-air-capture.html">Ubuntuで、エアキャプチャする方法</a>
-  </li>
+    <script src="/assets/prism/prism.js"></script>
 
-  <li>
-    <span class="post-date">Jun 25, 2020</span>
-    <a class="post-link" href="/linux/ubuntu-sleep-wakeup-mouse.html">Ubuntu20.04：スリップから復帰時、マウスが使えない時の対処</a>
-  </li>
+    <script src="https://kit.fontawesome.com/45a69050db.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Libmuy’s Blog | Libmuyのブロブです。個人的な技術の蓄積の場所としている。主に組み込み開発、趣味でWeb開発などもある。</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Libmuy’s Blog" />
+<meta name="author" content="Libmuy" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。" />
+<meta property="og:description" content="Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。" />
+<link rel="canonical" href="https://libmuy.github.io/2020/06/25/" />
+<meta property="og:url" content="https://libmuy.github.io/2020/06/25/" />
+<meta property="og:site_name" content="Libmuy’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-25T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Libmuy’s Blog" />
+<meta name="twitter:site" content="@libmuy" />
+<meta name="twitter:creator" content="@Libmuy" />
+<meta property="fb:admins" content="libmuy" />
+<meta property="article:publisher" content="libmuy" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Libmuy"},"description":"Libmuyの個人ブログです。組み込みLinuxエンジニアなので、仕事関連知識、自己研鑽のメモ、趣味、生活いろいろ記録していくために使う。","url":"https://libmuy.github.io/2020/06/25/","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://libmuy.github.io/2020/06/25/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://libmuy.github.io/assets/images/logo_black_small.png"},"name":"Libmuy"},"headline":"Libmuy’s Blog","dateModified":"2020-06-25T00:00:00+09:00","datePublished":"2020-06-25T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
-  <li>
-    <span class="post-date">Jun 25, 2020</span>
-    <a class="post-link" href="/linux/ubuntu-action-when-close-lid.html">Ubuntuディスプレイを閉じたときの挙動を設定</a>
-  </li>
 
-  <li>
-    <span class="post-date">Jun 25, 2020</span>
-    <a class="post-link" href="/linux/systemd.html">systemdを理解</a>
-  </li>
+</head>
 
-</ul>
+<body class="index">
+    
+
+    <nav>
+    <a href="/">
+        <img src="/assets/images/logo.svg">
+        <span>LIBMUY</span>
+    </a>
+
+    <div class="menu">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+
+</nav>
+
+    <div class="container">
+        <header id="header">
+    <div id="head-in">
+        <div id="sitename">
+            <a href="/" itemprop="url"><img src="/assets/images/logo.svg" alt="" width="150" height="150"
+                    class="onepoint" itemprop="image" sizes="(max-width: 150px) 100vw, 150px">
+                <span itemprop="name about">LIBMUY</span>
+            </a>
+        </div>
+        </div>
+        <div class="search-container">
+            <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
+    <div role="search" class="search-wrapper1">
+        <span class="search-wrapper2">
+            <input type="search" placeholder="Search the docs" required="required" class="search-input">
+            <span class="ds-dropdown-menu" role="listbox" id="search-suggestion-container">
+            </span>
+        </span>
+        <button type="submit" title="Submit your search query." class="search-submit-button">
+            <svg width="12" height="12" role="img" aria-label="Search">
+                <use xlink:href="/assets/images/search-icon.svg#search"></use>
+            </svg>
+        </button>
+        <button id="clear-btn" type="reset" title="Clear the search query." class="search-reset-button">
+            <svg width="12" height="12" role="img" aria-label="Reset">
+                <use xlink:href="/assets/images/search-icon.svg#reset"></use>
+            </svg>
+        </button>
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<script>
+    const search = instantsearch({
+        appId: 'BYSJ0BMMUA',
+        apiKey: '532e9a5e639b4c7b0de3ca2e25df117a',
+        indexName: 'blog'
+    });
+
+    const hitTemplate = function (hit) {
+        console.log("hitTemplate: hit:" + hit);
+        /* no display when no inputing */
+        if (hit._highlightResult == null || hit._highlightResult.content.matchedWords.length <= 0) {
+            return "";
+        }
+
+        let date = '';
+        if (hit.date) {
+            date = moment.unix(hit.date).format('MMM D, YYYY');
+        }
+        let url = hit.url;
+        if (!(hit.anchor == null)) {
+            url += `#${hit.anchor}`;
+        }
+        const title = hit._highlightResult.title.value;
+
+        let categories = '';
+        if (hit.category_name) {
+            categories = hit.category_name.split("/").map(match => {
+                return `<span class="post-breadcrumb">${match}</span>`
+            }).join(' > ')
+        }
+        const content = hit._highlightResult.content.value;
+
+        return `
+  <div class="ds-suggestion" role="option">
+    <a class="search-suggestion search-suggestion-secondary" aria-label="Link to the result" href="${url}">
+        <div class="search-suggestion-wrapper">
+            <div class="search-suggestion-subcategory-column">
+                <span class="search-suggestion-subcategory-column-text">${categories}</span>
+            </div>
+            <div class="search-suggestion-content">
+                <div class="search-suggestion-title">
+                    ${date}<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+                    ${title}
+                </div>
+                <div class="search-suggestion-text">
+                    ${content}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>`;
+    }
+
+    // Create a render function
+    var suggestion = document.querySelector('#search-suggestion-container');
+    var clrBtn = document.querySelector('#clear-btn');
+    const renderSearchBox = (renderOptions, isFirstRender) => {
+        const { query, refine, clear, isSearchStalled, widgetParams } = renderOptions;
+        var removeSuggestionTimer;
+
+        console.log("renderSearchBox: firstRender:" + isFirstRender + ", isSearchStalled:" + isSearchStalled + ", query:" + query);
+        if (isFirstRender) {
+            var input = document.querySelector('.search-input');
+            input.addEventListener('input', event => {
+                refine(event.target.value);
+            });
+            input.addEventListener('focusout', (event) => {
+                removeSuggestionTimer = setTimeout(function () {
+                    suggestion.style.display = 'none';
+                }, 300);
+            });
+
+            suggestion.addEventListener('click', () => {
+                console.log("suggestion event:click");
+                clearTimeout(removeSuggestionTimer);
+            });
+            suggestion.addEventListener('contextmenu', () => {
+                console.log("suggestion event:right click");
+                clearTimeout(removeSuggestionTimer);
+            });
+
+            clrBtn.addEventListener('click', () => {
+                clear();
+            });
+
+        }
+        if (query.length > 0) {
+            suggestion.style.display = 'block';
+            clrBtn.style.display = 'block';
+        } else {
+            suggestion.style.display = 'none';
+            clrBtn.style.display = 'none';
+        }
+
+        document.querySelector('input').value = query;
+        document.querySelector('#clear-btn').hidden = !isSearchStalled;
+    };
+
+    // create custom widget
+    const customSearchBox = instantsearch.connectors.connectSearchBox(
+        renderSearchBox
+    );
+
+    // instantiate custom widget
+    search.addWidgets([
+        customSearchBox({
+            container: document.querySelector('.searchbox'),
+        })
+    ]);
+
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-suggestion-container',
+            templates: {
+                item: hitTemplate
+            },
+            cssClasses: {
+                root: 'ds-dataset',
+                emptyRoot: 'ds-dataset-empty',
+                list: 'ds-suggestions',
+                item: 'ds-suggestions',
+            }
+        })
+    );
+
+    search.on('render', () => {
+        console.log("rendered");
+        var dataset = suggestion.getElementsByClassName('ds-dataset');
+        if (dataset.length == 0) return;
+        dataset = dataset[0];
+        var logodiv = document.getElementById("search-logo");
+        if (!(logodiv == null)) return;
+
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(`
+        <div id="search-logo" class="ds-suggestions">
+            <svg width="12" height="12" role="img" aria-label="Logo">
+                <use xlink:href="/assets/images/search-icon.svg#logo"></use>
+            </svg>
+        </div>
+        `, "text/html")
+
+        logodiv = doc.getElementById("search-logo");
+        dataset.appendChild(logodiv);
+    });
+
+    search.start();
+</script>
+        </div>
+</header>
+        <h1 class="archive-title" align="center">アーカイブ：2020／06／25</h1>
+
+<div id="primary" class="clearfix">
+    <main id="main">
+        <div id="section">
+    <div id="list" class="ngrid">
+
+        
+        
+
+        <div class="toc grid clearfix">
+            <section>
+                <h2 class="entry-title" itemprop="headline name"><a href="/linux/systemd.html" class="entry-link"
+                        itemprop="url">systemdを理解</a></h2>
+                <p class="meta">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="date">
+                        <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00"
+                            itemprop="datePublished">
+                            25 Jun 2020
+                        </time>
+                    </span>
+                    <i class="fas fa-redo-alt"></i>
+                    <span class="date">
+                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
+                        09 Oct 2021
+                    </span>
+                    
+                    
+                    
+                    
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/linux/">Linux</a>
+    
+    
+</span>
+                    <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/systemd/">systemd</a>
+    </span>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/linux/">linux</a>
+    
+    
+</span>
+                </p>
+                <figure class="term">
+                    <a href="/linux/systemd.html" aria-hidden="true">
+                        
+                        
+                        <img width="150" height="150" src="/assets/images/ubuntu.jpg">
+                    </a>
+                </figure>
+                <div class="excerpt" itemprop="description">
+                    <div class="exsp">
+                        <p><p>OSの起動、各サービスを制御する<code>systemd</code>を理解する</p>
+</p>
+                    </div>
+                </div>
+                <p class="read-more">
+                    <a href="/linux/systemd.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
+                </p>
+            </section>
+        </div>
+
+        
+
+        <div class="toc grid clearfix">
+            <section>
+                <h2 class="entry-title" itemprop="headline name"><a href="/linux/ubuntu-action-when-close-lid.html" class="entry-link"
+                        itemprop="url">Ubuntuディスプレイを閉じたときの挙動を設定</a></h2>
+                <p class="meta">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="date">
+                        <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00"
+                            itemprop="datePublished">
+                            25 Jun 2020
+                        </time>
+                    </span>
+                    <i class="fas fa-redo-alt"></i>
+                    <span class="date">
+                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
+                        09 Oct 2021
+                    </span>
+                    
+                    
+                    
+                    
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/linux/">Linux</a>
+    
+    
+</span>
+                    <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/ubuntu/">ubuntu</a>
+    </span>
+    
+    
+</span>
+                </p>
+                <figure class="term">
+                    <a href="/linux/ubuntu-action-when-close-lid.html" aria-hidden="true">
+                        
+                        
+                        <img width="150" height="150" src="/assets/images/ubuntu.jpg">
+                    </a>
+                </figure>
+                <div class="excerpt" itemprop="description">
+                    <div class="exsp">
+                        <p><p>Ubuntuディスプレイを閉じたときの挙動の設定方法</p>
+</p>
+                    </div>
+                </div>
+                <p class="read-more">
+                    <a href="/linux/ubuntu-action-when-close-lid.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
+                </p>
+            </section>
+        </div>
+
+        
+
+        <div class="toc grid clearfix">
+            <section>
+                <h2 class="entry-title" itemprop="headline name"><a href="/linux/ubuntu-sleep-wakeup-mouse.html" class="entry-link"
+                        itemprop="url">Ubuntu20.04：スリップから復帰時、マウスが使えない時の対処</a></h2>
+                <p class="meta">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="date">
+                        <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00"
+                            itemprop="datePublished">
+                            25 Jun 2020
+                        </time>
+                    </span>
+                    <i class="fas fa-redo-alt"></i>
+                    <span class="date">
+                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
+                        09 Oct 2021
+                    </span>
+                    
+                    
+                    
+                    
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/linux/">Linux</a>
+    
+    
+</span>
+                    <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/ubuntu/">ubuntu</a>
+    </span>
+    
+    
+</span>
+                </p>
+                <figure class="term">
+                    <a href="/linux/ubuntu-sleep-wakeup-mouse.html" aria-hidden="true">
+                        
+                        
+                        <img width="150" height="150" src="/assets/images/ubuntu.jpg">
+                    </a>
+                </figure>
+                <div class="excerpt" itemprop="description">
+                    <div class="exsp">
+                        <p><p>スリープから復帰時、マウスが動作しなかった。<br />
+原因は、マウスのドライバがスリープ対応していないようだ。</p>
+</p>
+                    </div>
+                </div>
+                <p class="read-more">
+                    <a href="/linux/ubuntu-sleep-wakeup-mouse.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
+                </p>
+            </section>
+        </div>
+
+        
+
+        <div class="toc grid clearfix">
+            <section>
+                <h2 class="entry-title" itemprop="headline name"><a href="/others/devtips/ubuntu-air-capture.html" class="entry-link"
+                        itemprop="url">Ubuntuで、エアキャプチャする方法</a></h2>
+                <p class="meta">
+                    <i class="far fa-calendar-alt"></i>
+                    <span class="date">
+                        <time class="entry-date updated" datetime="2020-06-25T00:00:00+09:00"
+                            itemprop="datePublished">
+                            25 Jun 2020
+                        </time>
+                    </span>
+                    <i class="fas fa-redo-alt"></i>
+                    <span class="date">
+                        <meta itemprop="dateModified" content="2021-10-09T01:07:40+09:00">
+                        09 Oct 2021
+                    </span>
+                    
+                    
+                    
+                    
+
+
+
+<span class="category items" itemprop="keywords">
+    
+    
+    
+    
+    <i class="fas fa-folder"></i>
+    <a href="/category/others/">その他</a>
+    <i class="arrow">&gt;</i>
+    
+    
+    
+    
+    
+    <i class="fas fa-folder-open"></i>
+    <a href="/category/others/devtips/">開発Tips</a>
+    
+    
+</span>
+                    <span class="tags items" itemprop="keywords">
+
+    
+    
+    <span class="first-item">
+        <i class="fas fa-tags"></i>
+        <a href="/tag/Ubuntu/">Ubuntu</a>
+    </span>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/wireshark/">wireshark</a>
+    
+    
+    
+    <span class="break">,</span>
+    <a href="/tag/wireless/">wireless</a>
+    
+    
+</span>
+                </p>
+                <figure class="term">
+                    <a href="/others/devtips/ubuntu-air-capture.html" aria-hidden="true">
+                        
+                        
+                        <img width="150" height="150" src="/assets/images/ubuntu.jpg">
+                    </a>
+                </figure>
+                <div class="excerpt" itemprop="description">
+                    <div class="exsp">
+                        <p>
+</p>
+                    </div>
+                </div>
+                <p class="read-more">
+                    <a href="/others/devtips/ubuntu-air-capture.html" class="read-more-link" aria-hidden="true" itemprop="url">記事を読む</a>
+                </p>
+            </section>
+        </div>
+
+         
+
+    </div>
+    <!--/#list-->
+</div>
+    </main>
+    <div id="right-side">
+    <div id="side-fixed">
+        <div class="title ">
+            <a href="/">ホーム</a>
+        </div>
+        
+
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/linux">Linux(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/kernel">カーネル(5)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/network">ネットワーク(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/web">Web関連(3)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv1 ">
+    <a href="/category/others">その他(10)</a>
+</div>
+
+
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/windows">Windows(1)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/tools">ツール(2)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/devtips">開発Tips(4)</a>
+</div>
+
+
+        
+        
+        
+
+<div class="category-lv2 ">
+    <a href="/category/others/bash">シェル(3)</a>
+</div>
+
+
+        
+        
+        
+
+
+
+        <div class="title ">
+            アーカイブ
+        </div>
+        <ul id="achive-list">
+            
+
+            
+            
+
+            <li><span class="caret  "><a href="/2021/"> 2021年 </a> </span>
+                <ul class="nested ">
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2021/10/"> 10月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2021/10/15"> 15日 </a>
+                                
+                            
+                                    <li > <a href="/2021/10/14"> 14日 </a>
+                                
+                            
+                                    <li > <a href="/2021/10/11"> 11日 </a>
+                                
+                            
+                                    <li > <a href="/2021/10/07"> 07日 </a>
+                                
+                            
+                                    <li > <a href="/2021/10/05"> 05日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2021/09/"> 09月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2021/09/26"> 26日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+
+            
+            
+
+            <li><span class="caret open active"><a href="/2020/"> 2020年 </a> </span>
+                <ul class="nested open">
+                    
+                    
+
+                    <li><span class="caret open active"><a href="/2020/06/"> 06月 </a> </span>
+                        <ul class="nested open">
+                            
+                            
+                                    <li class="active"> <a href="/2020/06/25"> 25日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+
+            
+            
+
+            <li><span class="caret  "><a href="/2019/"> 2019年 </a> </span>
+                <ul class="nested ">
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2019/02/"> 02月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2019/02/21"> 21日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+
+            
+            
+
+            <li><span class="caret  "><a href="/2018/"> 2018年 </a> </span>
+                <ul class="nested ">
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2018/07/"> 07月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2018/07/26"> 26日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                    
+
+                    <li><span class="caret open active"><a href="/2018/06/"> 06月 </a> </span>
+                        <ul class="nested open">
+                            
+                            
+                                    <li > <a href="/2018/06/22"> 22日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2018/04/"> 04月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2018/04/04"> 04日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2018/03/"> 03月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2018/03/30"> 30日 </a>
+                                
+                            
+                                    <li > <a href="/2018/03/01"> 01日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                    
+
+                    <li><span class="caret  "><a href="/2018/02/"> 02月 </a> </span>
+                        <ul class="nested ">
+                            
+                            
+                                    <li > <a href="/2018/02/16"> 16日 </a>
+                                
+                            
+                                    <li > <a href="/2018/02/08"> 08日 </a>
+                                
+                            
+                                    <li > <a href="/2018/02/02"> 02日 </a>
+                                
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
+<!--/#right-side-->
+</div>
+
+    </div>
+    <button onclick="goToTopFunction()" id="goToTopBtn" title="Go to top">Top</button>
+    <script type="text/javascript" src="/assets/main.js"></script>
+
+    <div id="footer" itemscope="" itemtype="https://schema.org/WPFooter">
+    <footer>
+        <div id="copyright">
+            <p class="copy">Copyright © <span itemprop="copyrightYear">2021</span>&nbsp;<span
+                    itemprop="copyrightHolder name">Libmuy</span> All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+
+</html>
